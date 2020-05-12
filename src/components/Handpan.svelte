@@ -48,7 +48,6 @@
 
         const angleOffset = note.ding ? 0 : (note.isTop ? -90 : (notes.length === 2 ? 0 : 135)); // Starts at the bottom side instead of the left.
         const angleIncrementation = 360 / notes.length;
-
         let angle = 0;
         let i = 0;
 
@@ -87,9 +86,7 @@
 
     export let notes: Array<MusicNote>;
 
-    $: {
-        dings = notes.filter((note) => note.ding);
-    }
+    let dings = notes.filter((note) => note.ding);
     //$: topNotes = notes.filter((note) => !note.ding && note.isTop);
     //$: bottomNotes = notes.filter((note) => !note.ding && !note.isTop);
 </script>
