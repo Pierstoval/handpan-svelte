@@ -1,7 +1,7 @@
 <script lang="ts">
-    import MusicNote from "../ts/MusicNote";
-    import {Note} from "../ts/Note";
-    import {NoteAlteration} from "../ts/NoteAlteration";
+    import MusicNote from "../classes/MusicNote";
+    import {Note} from "../classes/Note";
+    import {NoteAlteration} from "../classes/NoteAlteration";
 
     export let note: MusicNote = new MusicNote(Note.C, NoteAlteration.sharp, 3, true, 0);
 

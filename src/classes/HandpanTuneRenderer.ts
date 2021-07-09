@@ -1,5 +1,5 @@
-import HandpanTune from "./HandpanTune";
-import MusicNote from "./MusicNote";
+import type HandpanTune from "./HandpanTune";
+import type MusicNote from "./MusicNote";
 
 export default class HandpanTuneRenderer {
     private document: HTMLDocument;
