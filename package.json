@@ -1,6 +1,7 @@
 {
-  "name": "~TODO~",
+  "name": "@orbitale/handpan-composer",
   "version": "0.0.1",
+  "license": "AGPL-3.0",
   "scripts": {
     "dev": "svelte-kit dev",
     "build": "svelte-kit build",
@@ -12,18 +13,22 @@
   },
   "devDependencies": {
     "@sveltejs/kit": "next",
-    "@typescript-eslint/eslint-plugin": "^4.19.0",
-    "@typescript-eslint/parser": "^4.19.0",
-    "eslint": "^7.22.0",
-    "eslint-config-prettier": "^8.1.0",
+    "@typescript-eslint/eslint-plugin": "^4.28.2",
+    "@typescript-eslint/parser": "^4.28.2",
+    "eslint": "^7.30.0",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-svelte3": "^3.2.0",
-    "prettier": "~2.2.1",
-    "prettier-plugin-svelte": "^2.2.0",
-    "svelte": "^3.34.0",
-    "svelte-check": "^2.0.0",
-    "svelte-preprocess": "^4.0.0",
-    "tslib": "^2.0.0",
-    "typescript": "^4.0.0"
+    "node-sass": "^6.0.1",
+    "prettier": "^2.3.2",
+    "prettier-plugin-svelte": "^2.3.1",
+    "svelte": "^3.38.3",
+    "svelte-check": "^2.2.2",
+    "svelte-preprocess": "^4.7.4",
+    "tslib": "^2.3.0",
+    "typescript": "^4.3.5"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "node-sass": "^6.0.1"
+  }
 }
