@@ -1,9 +1,8 @@
 <script lang="ts">
-    import MusicNote from "../classes/MusicNote";
-    import {Note} from "../classes/Note";
-    import {NoteAlteration} from "../classes/NoteAlteration";
+    import HandpanNote from "../classes/HandpanNote";
+    import {Note, NoteAlteration} from "../classes/enums";
 
-    export let note: MusicNote = new MusicNote(Note.C, NoteAlteration.sharp, 3, true, 0);
+    export let note: HandpanNote = new HandpanNote(Note.C, NoteAlteration.sharp, 3, true, 0);
 
     const notes_types = Object.keys(Note);
 </script>

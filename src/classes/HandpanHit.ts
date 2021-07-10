@@ -1,5 +1,5 @@
-import HitType from "./HitType";
-import {Hand} from "./Hand";
+import type HitType from "./HitType";
+import type {Hand} from "./enums";
 
 export default class HandpanHit {
     public readonly hit_type: HitType;

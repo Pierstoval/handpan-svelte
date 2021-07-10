@@ -1,34 +1,29 @@
-import MusicNote from "./MusicNote";
-import {Note} from "./Note";
-import {NoteAlteration} from "./NoteAlteration";
+import type HandpanNote from "./HandpanNote";
 
 export default class HandpanTune {
-    private readonly _notes: Array<MusicNote>;
+    private readonly _notes: Array<HandpanNote>;
 
-    constructor() {
-        // position <0 => low notes below the handpan
-        // position 0 => ding
-        // position 1 => lowest note on the top-part of the handpan
-
-        // TODO: make this configurable by the end user
-        this._notes = [
-            new MusicNote(Note.C, NoteAlteration.sharp, 3, true, 0),
-            new MusicNote(Note.G, NoteAlteration.none, 3, false, 0),
-            new MusicNote(Note.A, NoteAlteration.none, 4, false, 1),
-            new MusicNote(Note.B, NoteAlteration.none, 4, false, 2),
-            new MusicNote(Note.C, NoteAlteration.sharp, 4, false, 3),
-            new MusicNote(Note.D, NoteAlteration.sharp, 4, false, 4),
-            new MusicNote(Note.E, NoteAlteration.none, 4, false, 5),
-            new MusicNote(Note.F, NoteAlteration.sharp, 4, false, 6),
-            new MusicNote(Note.G, NoteAlteration.sharp, 4, false, 7),
-        ];
+    constructor(notes: HandpanNote[]) {
+        this._notes = notes;
     }
 
-    get notes(): Array<MusicNote> {
+    get dings(): Array<HandpanNote> {
+        return this._notes.filter((note) => note.isDing);
+    }
+
+    get topNotes(): Array<HandpanNote> {
+        return this._notes.filter((note) => note.isTop);
+    }
+
+    get bottomNotes(): Array<HandpanNote> {
+        return this._notes.filter((note) => note.isBottom);
+    }
+
+    get notes(): Array<HandpanNote> {
         return this._notes;
     }
 
-    public getNoteByPosition(position: number): MusicNote | null {
+    public getNoteByPosition(position: number): HandpanNote | null {
         for (let note of this._notes) {
             if (note.position === position) {
                 return note;

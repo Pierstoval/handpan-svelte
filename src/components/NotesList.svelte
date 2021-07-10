@@ -1,6 +1,6 @@
 <script lang="ts">
-    import {Note} from "../classes/Note";
     import NoteInput from "./NoteInput.svelte";
+    import {Note} from "../classes/enums";
 
     export let notes: Note[];
 </script>
