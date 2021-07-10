@@ -17,14 +17,8 @@
     ];
 </script>
 
-<style lang="scss">
-    body {
-        background-color: #333;
-        color: #ddd;
-        font-family: Arial, sans-serif;
-    }
-</style>
+<section>
 
-<h1>Handpan.</h1>
+    <Handpan tune={notes}/>
 
-<Handpan tune={notes}/>
+</section>
