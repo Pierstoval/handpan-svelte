@@ -1,5 +1,5 @@
 export enum NoteAlteration {
     none = '',
     sharp = '#',
-    b = 'b',
+    flat = 'b',
 }
