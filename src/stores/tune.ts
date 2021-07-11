@@ -16,7 +16,7 @@ const baseValue = new HandpanTune([
 ]);
 
 function createCount() {
-    const { subscribe, set, update } = writable(baseValue);
+    const { subscribe, set, update } = writable<HandpanTune>(baseValue);
 
     return {
         baseValue,

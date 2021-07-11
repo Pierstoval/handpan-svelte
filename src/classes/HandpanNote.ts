@@ -2,23 +2,11 @@ import type {Note, NoteAlteration} from "./enums";
 import {HandpanNoteType} from "./enums";
 
 export default class HandpanNote {
-    private readonly _note: Note;
-    private readonly _alteration: NoteAlteration;
-    private readonly _octave: number;
+    public note: Note;
+    public alteration: NoteAlteration;
+    public octave: number;
     private readonly _type: HandpanNoteType;
     private readonly _position: number;
-
-    get note(): Note {
-        return this._note;
-    }
-
-    get alteration(): NoteAlteration {
-        return this._alteration;
-    }
-
-    get octave(): number {
-        return this._octave;
-    }
 
     get type(): HandpanNoteType {
         return this._type;
@@ -29,7 +17,7 @@ export default class HandpanNote {
     }
 
     get fullName(): string {
-        return this._note+this.alteration+this.octave
+        return this.note+this.alteration+this.octave
     }
 
     get isTop(): boolean {
@@ -51,9 +39,9 @@ export default class HandpanNote {
         type: HandpanNoteType,
         position: number
     ) {
-        this._note = note;
-        this._alteration = alteration;
-        this._octave = octave;
+        this.note = note;
+        this.alteration = alteration;
+        this.octave = octave;
         this._type = type;
         this._position = position;
         if (position < 0) {
