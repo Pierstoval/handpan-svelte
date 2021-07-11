@@ -20,7 +20,7 @@ export enum NoteAlteration {
 }
 
 export enum HandpanNoteType {
-    topNote,
-    bottomNote,
-    ding,
+    topNote = 'topNote',
+    bottomNote = 'bottomNote',
+    ding = 'ding',
 }

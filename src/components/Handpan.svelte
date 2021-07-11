@@ -17,10 +17,10 @@
     <h1>Tune</h1>
     <div id="handpan">
         <h2>Top notes:</h2>
-        <NotesList notes={tune.dings} />
+        <NotesList notes={tune.topNotes} />
 
         <h2>Dings:</h2>
-        <NotesList notes={tune.topNotes} />
+        <NotesList notes={tune.dings} />
 
         <h2>Bottom notes:</h2>
         <NotesList notes={tune.bottomNotes} />
