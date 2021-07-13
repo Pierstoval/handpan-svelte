@@ -1,5 +1,5 @@
-import type {Note, NoteAlteration} from "./enums";
-import {HandpanNoteType} from "./enums";
+import type {Note} from "./enums";
+import {HandpanNoteType, NoteAlteration, NoteMidiNumberBase} from "./enums";
 
 export default class HandpanNote {
     public note: Note;
@@ -30,6 +30,18 @@ export default class HandpanNote {
 
     get isBottom(): boolean {
         return this._type === HandpanNoteType.bottomNote;
+    }
+
+    get midiNumber(): number {
+        let number = NoteMidiNumberBase[this.note.toString()] + ((this.octave-1) * 12);
+
+        if (this.alteration === NoteAlteration.sharp) {
+            number++;
+        } else if (this.alteration === NoteAlteration.flat) {
+            number--;
+        }
+
+        return number;
     }
 
     constructor(

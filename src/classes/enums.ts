@@ -1,6 +1,6 @@
 export enum Hand {
-    left,
-    right,
+    left = 'left',
+    right = 'right',
 }
 
 export enum Note {
@@ -11,6 +11,22 @@ export enum Note {
     E = 'E',
     F = 'F',
     G = 'G',
+}
+
+/**
+ * Everything can be calculated based
+ * on the fact that C1 = 24.
+ * A0 and B0 can be calculated too, but
+ * they're incompatible with handpans, so…
+ */
+export const NoteMidiNumberBase = {
+    'C': 24,
+    'D': 26,
+    'E': 28,
+    'F': 29,
+    'G': 31,
+    'A': 33,
+    'B': 35,
 }
 
 export enum NoteAlteration {
