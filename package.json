@@ -21,6 +21,7 @@
     "node-sass": "^6.0.1",
     "prettier": "^2.3.2",
     "prettier-plugin-svelte": "^2.3.1",
+    "rollup": "^2.53.2",
     "svelte": "^3.38.3",
     "svelte-check": "^2.2.2",
     "svelte-preprocess": "^4.7.4",
