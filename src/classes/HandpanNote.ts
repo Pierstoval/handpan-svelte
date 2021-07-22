@@ -20,6 +20,15 @@ export default class HandpanNote {
         return this.note+this.alteration+this.octave
     }
 
+    get fullDetailedName(): string {
+        return this._position
+            + ' - '
+            + this.fullName
+            + (this.isDing?' (ding)' : '')
+            + (this.isBottom?' (bottom)' : '')
+        ;
+    }
+
     get isTop(): boolean {
         return this._type === HandpanNoteType.topNote;
     }

@@ -15,13 +15,12 @@ const baseValue = new HandpanTune([
     new HandpanNote(Note.G, NoteAlteration.sharp, 4, HandpanNoteType.topNote, 6),
 ]);
 
-function createCount() {
+function createTune() {
     const { subscribe, set, update } = writable<HandpanTune>(baseValue);
 
     return {
-        baseValue,
         subscribe,
     };
 }
 
-export const tune = createCount();
+export const tune = createTune();

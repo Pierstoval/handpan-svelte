@@ -23,9 +23,29 @@ export default class HandpanTune {
         return this._notes;
     }
 
-    public getNoteByPosition(position: number): HandpanNote | null {
-        for (let note of this._notes) {
-            if (note.position === position) {
+    public getTopNoteByPosition(position: number): HandpanNote | null {
+        for (const note of this._notes) {
+            if (note.isTop && note.position === position) {
+                return note;
+            }
+        }
+
+        return null;
+    }
+
+    public getBottomNoteByPosition(position: number): HandpanNote | null {
+        for (const note of this._notes) {
+            if (note.isBottom && note.position === position) {
+                return note;
+            }
+        }
+
+        return null;
+    }
+
+    public getDingByPosition(position: number): HandpanNote | null {
+        for (const note of this._notes) {
+            if (note.isDing && note.position === position) {
                 return note;
             }
         }

@@ -5,24 +5,13 @@
     export let tune: HandpanTune;
 </script>
 
-<style lang="scss">
-    #handpan {
-        width: 400px;
-        margin: 10px auto 0 auto;
-        display: block;
-    }
-</style>
+<h2>Tune</h2>
 
-<div>
-    <h1>Tune</h1>
-    <div id="handpan">
-        <h2>Top notes:</h2>
-        <NotesList notes={tune.topNotes} />
+<h3>Top notes:</h3>
+<NotesList notes={tune.topNotes} />
 
-        <h2>Dings:</h2>
-        <NotesList notes={tune.dings} />
+<h3>Dings:</h3>
+<NotesList notes={tune.dings} />
 
-        <h2>Bottom notes:</h2>
-        <NotesList notes={tune.bottomNotes} />
-    </div>
-</div>
+<h3>Bottom notes:</h3>
+<NotesList notes={tune.bottomNotes} />

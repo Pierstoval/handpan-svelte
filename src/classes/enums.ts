@@ -40,3 +40,10 @@ export enum HandpanNoteType {
     bottomNote = 'bottomNote',
     ding = 'ding',
 }
+
+export enum TrackNoteType {
+    note = 'note',
+    slap = 'slap',
+    ghost = 'ghost',
+    none = 'none',
+}

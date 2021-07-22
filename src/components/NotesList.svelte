@@ -6,11 +6,7 @@
 </script>
 
 <div class="notes-list">
-    {#if notes && notes.length}
-        {#each notes as note, i (note)}
-            <HandpanNote {note} />
-        {/each}
-    {:else}
-        None
-    {/if}
+    {#each notes as note, i (note)}
+        <HandpanNote {note} />
+    {/each}
 </div>
