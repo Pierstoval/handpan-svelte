@@ -54,7 +54,10 @@ export default class Player {
     private static loadedAudio = {};
 
     private static isPlayingTrack = false;
+
     private static playingTimeouts: Array<Timeout> = [];
+
+    private static bpm = 120;
 
     public static loadSounds(): void {
         this.load('clac', soundFiles.clac);
@@ -67,15 +70,7 @@ export default class Player {
     public static playTrack(track: Track, finishCallback: () => unknown): void {
         this.clearTimeouts();
 
-        if (track.bpm === 0) {
-            throw new Error('The BPM (beats per minute) must be different than zero.');
-        }
-
-        if (track.bpm < 0) {
-            throw new Error('The BPM (beats per minute) must be a positive number.');
-        }
-
-        const millisecondsPerBeat = (1000 * 60 / track.bpm) / 4;
+        const millisecondsPerBeat = this.getMsPerBeat();
 
         this.isPlayingTrack = true;
         const clonedNotes  = Object.assign([], track.notes);
@@ -86,17 +81,45 @@ export default class Player {
         }
     }
 
+    private static getMsPerBeat() {
+        return 1000 * 60 / this.getBpm();
+    }
+
     public static stop(): void {
         this.clearTimeouts();
     }
 
-    private static playNoteByType(type: string, volume = 1): void {
+    public static playNoteByType(type: string, volume = 1, finishCallback: () => unknown = null): void {
         if (!this.loadedAudio[type]) {
             throw new Error(`Sound type "${type}" is not loaded or does not exist.`);
         }
-        this.loadedAudio[type].volume = volume;
-        this.loadedAudio[type].play();
-        this.loadedAudio[type].volume = 1;
+        const audio = this.loadedAudio[type].cloneNode();
+        audio.volume = volume;
+        audio.play();
+        if (finishCallback) {
+            const duration = isNaN(audio.duration) ? this.getMsPerBeat() : audio.duration;
+            this.playingTimeouts.push(setTimeout(finishCallback, duration));
+        }
+    }
+
+    private static playNote(note: TrackNote): void {
+        note.setPlaying();
+        switch(true) {
+            case note.isSlap:
+                this.playNoteByType('clac', 1, () => note.stopPlaying());
+                break;
+
+            case note.isGhost:
+                this.playNoteByType('clac', 1, () => note.stopPlaying());
+                break;
+
+            case note.isNone:
+                break;
+
+            default:
+                this.playNoteByType(note.playerName, 0.3, () => note.stopPlaying());
+                break;
+        }
     }
 
     /**
@@ -118,29 +141,9 @@ export default class Player {
         }
     }
 
-    private static playNote(note: TrackNote): void {
-        switch(true) {
-            case note.isSlap:
-                this.playNoteByType('clac');
-                break;
-
-            case note.isGhost:
-                this.playNoteByType('clac', 0.5);
-                break;
-
-            case note.isNone:
-                break;
-
-            default:
-                this.playNoteByType(note.playerName);
-                break;
-        }
-    }
-
     private static clearTimeouts(): void {
         while (this.playingTimeouts.length) {
-            const timeout = this.playingTimeouts.shift();
-            clearTimeout(timeout);
+            clearTimeout(this.playingTimeouts.shift());
         }
         this.isPlayingTrack = false;
     }
@@ -151,5 +154,17 @@ export default class Player {
         audio.preload = 'auto';
         audio.volume = 1;
         audio.addEventListener('canplaythrough', () => this.loadedAudio[type] = audio);
+    }
+
+    private static getBpm(): number {
+        if (this.bpm === 0) {
+            throw new Error('The BPM (beats per minute) must be different than zero.');
+        }
+
+        if (this.bpm < 0) {
+            throw new Error('The BPM (beats per minute) must be a positive number.');
+        }
+
+        return this.bpm;
     }
 }

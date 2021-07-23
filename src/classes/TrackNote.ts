@@ -4,13 +4,15 @@ import type HandpanNote from "./HandpanNote";
 export default class TrackNote {
     public note: HandpanNote|null;
     public type: TrackNoteType;
+    public htmlElement: HTMLElement;
+    private _initialColor: string;
 
     get fullName(): string {
         switch(true) {
             case this.isSlap:  return '×';
             case this.isGhost: return '👻';
             case this.isNone:  return '—';
-            default:           return this.note.fullName;
+            default:           return this.note?.fullName ?? '-';
         }
     }
 
@@ -44,5 +46,16 @@ export default class TrackNote {
     ) {
         this.note = note;
         this.type = type;
+    }
+
+    public setPlaying(): void {
+        if (!this._initialColor) {
+            this._initialColor = this.htmlElement.style.borderColor;
+        }
+        this.htmlElement.firstElementChild.classList.add('playing');
+    }
+
+    public stopPlaying(): void {
+        this.htmlElement.firstElementChild.classList.remove('playing');
     }
 }

@@ -11,10 +11,9 @@
 
     function play() {
         playing = true;
-        Player.playTrack(track, () => {
-            playing = false;
-        });
+        Player.playTrack(track, () => playing = false);
     }
+
     function stop() {
         Player.stop();
         playing = false;
@@ -28,16 +27,20 @@
       flex-wrap: wrap;
       justify-content: left;
       align-items: stretch;
-      width: 280px;
+      width: 560px;
     }
 
     .track-control {
       width: 40px;
       height: 40px;
-      border-radius: 20px;
-      font-size: 16px;
+      font-size: 32px;
       text-align: center;
-      border: solid 2px #999;
+      border: none transparent;
+      background: none transparent;
+      cursor: pointer;
+      &:active {
+        transform: scale(0.95);
+      }
     }
 </style>
 
@@ -45,11 +48,11 @@
 
 {#if playing}
     <button type="button" class="track-control" on:click={stop}>
-        ⏹
+        ⏸
     </button>
 {:else}
     <button type="button" class="track-control" on:click={play}>
-        ▶
+        ⏯
     </button>
 {/if}
 

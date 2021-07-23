@@ -19,17 +19,6 @@
         if (!track_value.notes.length) {
             track.setDefault(tune_value);
         }
-
-        document.addEventListener('click', function (e: HTMLEvent) {
-            function hideActiveElements(selector: string): void {
-                for (const el of document.querySelectorAll(selector+'.active')) {
-                    if (el === e.target.closest(selector+'.active')) continue;
-                    el.classList.remove('active');
-                }
-            }
-            hideActiveElements('.note-menu');
-            hideActiveElements('.track-note-menu');
-        }, { capture: true });
     });
 
 </script>
