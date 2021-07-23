@@ -5,6 +5,7 @@
     import {tune} from '../stores/tune';
     import {track} from '../stores/track';
     import {onMount} from "svelte";
+    import Player from "../classes/Player";
 
     let tune_value: HandpanTune;
     let track_value: Track;
@@ -13,6 +14,8 @@
     track.subscribe((value: Track) => track_value = value);
 
     onMount(() => {
+        Player.loadSounds();
+
         if (!track_value.notes.length) {
             track.setDefault(tune_value);
         }

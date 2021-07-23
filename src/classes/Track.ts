@@ -1,7 +1,9 @@
 import type TrackNote from "./TrackNote";
 
 export default class Track {
-    private _notes: Array<TrackNote>;
+    private readonly _notes: Array<TrackNote>;
+
+    public bpm = 120;
 
     get notes(): Array<TrackNote> {
         return this._notes;
