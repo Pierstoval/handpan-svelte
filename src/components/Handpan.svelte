@@ -1,5 +1,5 @@
 <script lang="ts">
-    import NotesList from "./NotesList.svelte";
+    import HandpanNote from "./HandpanNote.svelte";
     import HandpanTune from "../classes/HandpanTune";
 
     export let tune: HandpanTune;
@@ -8,10 +8,23 @@
 <h2>Tune</h2>
 
 <h3>Top notes:</h3>
-<NotesList notes={tune.topNotes} />
+
+<div class="notes-list">
+    {#each tune.topNotes as note, i (note)}
+        <HandpanNote {note} />
+    {/each}
+</div>
 
 <h3>Dings:</h3>
-<NotesList notes={tune.dings} />
+<div class="notes-list">
+    {#each tune.dings as note, i (note)}
+        <HandpanNote {note} />
+    {/each}
+</div>
 
 <h3>Bottom notes:</h3>
-<NotesList notes={tune.bottomNotes} />
+<div class="notes-list">
+    {#each tune.bottomNotes as note, i (note)}
+        <HandpanNote {note} />
+    {/each}
+</div>

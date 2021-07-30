@@ -33,9 +33,11 @@
     .track-control {
       width: 40px;
       height: 40px;
-      font-size: 32px;
+      font-size: 25px;
       text-align: center;
-      border: none transparent;
+      border: solid 2px #666;
+      border-radius: 20px;
+      line-height: 20px;
       background: none transparent;
       cursor: pointer;
       &:active {

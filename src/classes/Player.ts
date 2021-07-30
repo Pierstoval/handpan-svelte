@@ -57,6 +57,8 @@ export default class Player {
 
     private static playingTimeouts: Array<Timeout> = [];
 
+    private static playingNotes: Array<TrackNote> = [];
+
     private static bpm = 120;
 
     public static loadSounds(): void {
@@ -104,20 +106,21 @@ export default class Player {
 
     private static playNote(note: TrackNote): void {
         note.setPlaying();
+        this.playingNotes.push(note);
         switch(true) {
             case note.isSlap:
-                this.playNoteByType('clac', 1, () => note.stopPlaying());
+                this.playNoteByType('clac', 1, () => this.stopNote(note));
                 break;
 
             case note.isGhost:
-                this.playNoteByType('clac', 1, () => note.stopPlaying());
+                this.playNoteByType('clac', 1, () => this.stopNote(note));
                 break;
 
             case note.isNone:
                 break;
 
             default:
-                this.playNoteByType(note.playerName, 0.3, () => note.stopPlaying());
+                this.playNoteByType(note.playerName, 0.3, () => this.stopNote(note));
                 break;
         }
     }
@@ -145,7 +148,16 @@ export default class Player {
         while (this.playingTimeouts.length) {
             clearTimeout(this.playingTimeouts.shift());
         }
+        while (this.playingNotes.length) {
+            /** @var TrackNote note */
+            this.stopNote(this.playingNotes.shift());
+        }
         this.isPlayingTrack = false;
+    }
+
+    private static stopNote(note: TrackNote): void {
+        note.stopPlaying();
+        this.playingNotes = this.playingNotes.filter((n: TrackNote) => n !== note);
     }
 
     private static load(type: string, soundFile: string): void {
