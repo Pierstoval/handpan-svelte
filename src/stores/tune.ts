@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
 import HandpanTune from "../classes/HandpanTune";
 import HandpanNote from "../classes/HandpanNote";
-import {HandpanNoteType, Note, NoteAlteration} from "../classes/enums";
+import {HandpanNoteType, Note, NoteAlteration} from "../classes/_structs";
 
 const baseValue = new HandpanTune([
     new HandpanNote(Note.C, NoteAlteration.sharp, 3, HandpanNoteType.bottomNote, 0),

@@ -1,7 +1,7 @@
 <script lang="ts">
     import TrackNote from "../classes/TrackNote";
     import HandpanTune from "../classes/HandpanTune";
-    import {TrackNoteType} from "../classes/enums";
+    import {TrackNoteType} from "../classes/_structs";
     import Player from "../classes/Player";
 
     export let note: TrackNote;
@@ -9,7 +9,7 @@
 
     const notes_types: Array<TrackNoteType> = Object.values(TrackNoteType);
 
-    function playNoteOnChange(e: InputEvent): void {
+    function playNoteOnChange(): void {
         Player.playNoteByType(note.fullName);
     }
 
@@ -59,6 +59,10 @@
       border: 3px solid #ccd;
       line-height: 47px; // width or height minus border
 
+      .note-name {
+        user-select: none;
+      }
+
       &.playing {
         border-color: red;
       }
@@ -86,8 +90,8 @@
       &.type-ghost {
         background-color: #eee;
         .note-name {
-          font-size: 35px;
-          text-shadow: 0 0 3px black;
+          font-size: 18px;
+          text-shadow: 0 0 2px #444;
         }
       }
 

@@ -13,6 +13,29 @@ export enum Note {
     G = 'G',
 }
 
+export const UnavailableNotes = [
+    'Cb2',
+    'C2',
+    'C#2',
+    'Db2',
+    'D2',
+    'D#2',
+    'Eb2',
+    'A#5',
+    'B1',
+    'Bb5',
+    'B5',
+    'B#5',
+    'C6',
+];
+
+export const AvailableOctaves = [
+    2,
+    3,
+    4,
+    5,
+];
+
 /**
  * Everything can be calculated based
  * on the fact that C1 = 24.
