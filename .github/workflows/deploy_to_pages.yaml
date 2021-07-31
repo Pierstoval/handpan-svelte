@@ -16,7 +16,8 @@ jobs:
         run: |
           yarn install
           yarn run build
-          sed -i ./.build/index.html -e "s/\/\.\//\.\//g"
+          sed -i .build/index.html -e "s/\/\.\//\.\//g"
+          ls -R .build
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
