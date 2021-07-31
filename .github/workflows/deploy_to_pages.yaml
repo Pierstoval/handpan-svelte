@@ -17,7 +17,7 @@ jobs:
           yarn install
           yarn run build
           sed -i .build/index.html -e "s/\/\.\//\.\//g"
-          ls -R .build
+          touch .build/.nojekyll
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
