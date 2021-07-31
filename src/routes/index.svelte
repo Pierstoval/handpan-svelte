@@ -14,7 +14,7 @@
     track.subscribe((value: Track) => track_value = value);
 
     onMount(() => {
-        Player.loadSounds();
+        Player.loadAudioFiles();
 
         if (!track_value.notes.length) {
             track.setDefault(tune_value);

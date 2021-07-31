@@ -1,5 +1,6 @@
 import type Track from "./Track";
 import type TrackNote from "./TrackNote";
+import type HandpanTune from "./HandpanTune";
 
 const soundFiles = {
     'clac': 'clac/clac.flac',
@@ -51,64 +52,97 @@ const soundFiles = {
 };
 
 export default class Player {
-    public static readonly DEFAULT_AUDIO_DURATION = 1000;
+    public static readonly DEFAULT_AUDIO_DURATION = 300;
+
+    private static _isPlaying = false;
 
     private static loadedAudio = {};
 
-    private static isPlayingTrack = false;
-
-    private static playingTimeouts: Array<Timeout> = [];
+    private static playingTimeouts: Array<ReturnType<typeof setTimeout>> = [];
 
     private static playingNotes: Array<TrackNote> = [];
 
-    public static loadSounds(): void {
-        this.load('clac', soundFiles.clac);
-        this.load('gu', soundFiles.gu);
+    static get isPlaying(): boolean {
+        return this._isPlaying;
+    }
+
+    public static loadAudioFiles(): void {
+        this.loadAudioFile('clac', soundFiles.clac);
+        this.loadAudioFile('gu', soundFiles.gu);
         for (const note in soundFiles.notes) {
-            this.load(note, soundFiles.notes[note]);
+            this.loadAudioFile(note, soundFiles.notes[note]);
         }
     }
 
     public static playTrack(track: Track, finishCallback: () => unknown): void {
-        this.clearTimeouts();
+        this.stop();
 
-        const millisecondsPerBeat = this.getMsPerBeat(track.bpm, track.beat);
+        this._isPlaying = true;
 
-        this.isPlayingTrack = true;
-        const clonedNotes  = Object.assign([], track.notes);
-        this.playSequence([...clonedNotes], millisecondsPerBeat);
+        const msPerBeat = this.getMsPerBeat(track.bpm, track.beat);
+
+        let currentTimeoutDuration = msPerBeat;
+
+        // Schedule each note to be executed at the proper time.
+        track.notes.forEach((note: TrackNote) => {
+            this.addPlayingTimeout(() => Player.playNote(note), currentTimeoutDuration);
+
+            currentTimeoutDuration += msPerBeat;
+        });
 
         if (finishCallback) {
-            this.playingTimeouts.push(setTimeout(finishCallback, (millisecondsPerBeat * (clonedNotes.length + 1))));
+            // Callback is executed *before* "this.stop",
+            // to avoid the finish callback being removed
+            // when the player is stopped naturally when
+            // the track finishes.
+            this.addPlayingTimeout(finishCallback, currentTimeoutDuration);
         }
-    }
 
-    private static getMsPerBeat(bpm: number, beat: number) {
-        return 1000 * 60 / bpm / beat;
+        // And finally stop the player.
+        this.addPlayingTimeout(() => this.stop(), currentTimeoutDuration);
     }
 
     public static stop(): void {
-        this.clearTimeouts();
+        // Stop all timeouts and remove them from the player.
+        while (this.playingTimeouts.length) {
+            clearTimeout(this.playingTimeouts.shift());
+        }
+
+        // Play down all notes and remove them from the player.
+        while (this.playingNotes.length) {
+            this.playingNotes.shift().stopPlaying();
+        }
+
+        this.playingTimeouts = [];
+        this.playingNotes = [];
+
+        this._isPlaying = false;
     }
 
     public static playNoteByType(type: string, volume = 1, finishCallback: () => unknown = null): void {
         if (!this.loadedAudio[type]) {
             console.error(`Sound type "${type}" s not loaded or does not exist.`);
-            // this.playingTimeouts.push(setTimeout(finishCallback, 500));
             return;
         }
+
+        // Must be cloned to make sure it can be played several times in parallel.
+        // This allows playing the same audio twice in a row without having to wait
+        // for it to be stopped before restarting it.
         const audio = this.loadedAudio[type].cloneNode();
         audio.volume = volume;
         audio.play();
+
         if (finishCallback) {
             const duration = isNaN(audio.duration) ? this.DEFAULT_AUDIO_DURATION : audio.duration;
-            this.playingTimeouts.push(setTimeout(finishCallback, duration));
+            this.addPlayingTimeout(finishCallback, duration);
         }
     }
 
     private static playNote(note: TrackNote): void {
         note.setPlaying();
+
         this.playingNotes.push(note);
+
         switch(true) {
             case note.isSlap:
                 this.playNoteByType('clac', 1, () => this.stopNote(note));
@@ -122,47 +156,26 @@ export default class Player {
                 break;
 
             default:
-                this.playNoteByType(note.playerName, 1, () => this.stopNote(note));
+                this.playNoteByType(note.displayName, 1, () => this.stopNote(note));
                 break;
         }
     }
 
-    /**
-     * This function is called recursively when playing a sequence of notes.
-     */
-    private static playSequence(notes: Array<TrackNote>, millisecondsPerBeat: number): void {
-        if (this.isPlayingTrack === false) {
-            // Player stopped.
-            return;
-        }
-        const note = notes.shift();
-        this.playNote(note);
-        if (notes.length > 0) {
-            const timeout = setTimeout(() => {
-                Player.playSequence(notes, millisecondsPerBeat);
-            }, millisecondsPerBeat);
-
-            this.playingTimeouts.push(timeout);
-        }
-    }
-
-    private static clearTimeouts(): void {
-        while (this.playingTimeouts.length) {
-            clearTimeout(this.playingTimeouts.shift());
-        }
-        while (this.playingNotes.length) {
-            /** @var TrackNote note */
-            this.stopNote(this.playingNotes.shift());
-        }
-        this.isPlayingTrack = false;
-    }
-
     private static stopNote(note: TrackNote): void {
         note.stopPlaying();
+
         this.playingNotes = this.playingNotes.filter((n: TrackNote) => n !== note);
     }
 
-    private static load(type: string, soundFile: string): void {
+    private static getMsPerBeat(bpm: number, beat: number) {
+        return 1000 * 60 / bpm / beat;
+    }
+
+    private static addPlayingTimeout(callback: () => unknown, time: number): void {
+        this.playingTimeouts.push(setTimeout(callback, time));
+    }
+
+    private static loadAudioFile(type: string, soundFile: string): void {
         const audio = new Audio();
         audio.src = soundFile;
         audio.preload = 'auto';

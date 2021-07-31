@@ -1,11 +1,13 @@
 import {AvailableOctaves, HandpanNoteType, Note, NoteAlteration, NoteMidiNumberBase} from "./_structs";
 
 export default class HandpanNote {
+    public htmlElement: HTMLElement;
     private _note: Note;
     private _alteration: NoteAlteration;
     private _octave: number;
     private readonly _type: HandpanNoteType;
     private readonly _position: number;
+    private _initialColor: string;
 
     get octave(): number {
         return this._octave;
@@ -95,6 +97,28 @@ export default class HandpanNote {
             throw new Error('Note position must be a non-negative integer.');
         }
         this.refresh();
+    }
+
+
+    public setPlaying(): void {
+        if (!this.htmlElement) {
+            console.warn(`Playing note "${this.fullName}" which is not attached to any HTML element. The issue might be that this not is not in your current handpan tune.`);
+            return;
+        }
+
+        if (!this._initialColor) {
+            this._initialColor = this.htmlElement.style.borderColor;
+        }
+
+        this.htmlElement.firstElementChild.classList.add('playing');
+    }
+
+    public stopPlaying(): void {
+        if (!this.htmlElement) {
+            return;
+        }
+
+        this.htmlElement.firstElementChild.classList.remove('playing');
     }
 
     /**

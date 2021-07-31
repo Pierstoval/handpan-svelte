@@ -8,16 +8,16 @@
     export let track: Track;
     export let tune: HandpanTune;
 
-    let playing = false;
+    let isPlaying = false;
 
     function play() {
-        playing = true;
-        Player.playTrack(track, () => playing = false);
+        isPlaying = true;
+        Player.playTrack(track, () => stop());
     }
 
     function stop() {
+        isPlaying = false;
         Player.stop();
-        playing = false;
     }
 
     let bpmRangeValue: number[] = [120];
@@ -28,13 +28,16 @@
 </script>
 
 <style lang="scss">
+    section {
+      width: 560px;
+    }
+
     .notes {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: left;
       align-items: stretch;
-      width: 560px;
     }
 
     .track-control {
@@ -55,28 +58,30 @@
 
 <h2>Track</h2>
 
-<div>
-    Beat:
-    <RangeSlider bind:values={beatRangeValue} min={Track.MIN_BEAT} max={Track.MAX_BEAT} float pips all="label" />
-</div>
+<section>
+    <div>
+        Beat:
+        <RangeSlider bind:values={beatRangeValue} min={Track.MIN_BEAT} max={Track.MAX_BEAT} float pips all="label" />
+    </div>
 
-<div>
-    Speed (bpm):
-    <RangeSlider bind:values={bpmRangeValue} min={Track.MIN_BPM} max={Track.MAX_BPM} step=5 float pips pipstep=2 all="label" />
-</div>
+    <div>
+        Speed (bpm):
+        <RangeSlider bind:values={bpmRangeValue} min={Track.MIN_BPM} max={Track.MAX_BPM} float pips pipstep=10 all="label" />
+    </div>
 
-{#if playing}
-    <button type="button" class="track-control" on:click={stop}>
-        ⏸
-    </button>
-{:else}
-    <button type="button" class="track-control" on:click={play}>
-        ⏯
-    </button>
-{/if}
+    {#if isPlaying}
+        <button type="button" class="track-control" on:click={stop}>
+            ⏸
+        </button>
+    {:else}
+        <button type="button" class="track-control" on:click={play}>
+            ⏯
+        </button>
+    {/if}
 
-<div class="notes">
-    {#each track.notes as note}
-        <TrackNote note={note} tune={tune} />
-    {/each}
-</div>
+    <div class="notes">
+        {#each track.notes as note}
+            <TrackNote note={note} tune={tune} />
+        {/each}
+    </div>
+</section>

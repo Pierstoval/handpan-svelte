@@ -68,4 +68,8 @@ export default class HandpanTune {
     public numberOfNotes(): number {
         return this.notes.length - this.numberOfDings();
     }
+
+    public highlightNote(note: HandpanNote): void {
+
+    }
 }
