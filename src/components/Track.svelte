@@ -23,8 +23,6 @@
     let bpmRangeValue: number[] = [120];
     let beatRangeValue: number[] = [4];
 
-    const springValues = { stiffness: .15, damping: .4 };
-
     $: track.bpm = bpmRangeValue[0];
     $: track.beat = beatRangeValue[0];
 </script>
@@ -49,9 +47,9 @@
       line-height: 20px;
       background: none transparent;
       cursor: pointer;
-      &:active {
-        transform: scale(0.95);
-      }
+    }
+    .track-control:active {
+      transform: scale(0.95);
     }
 </style>
 
@@ -59,12 +57,12 @@
 
 <div>
     Beat:
-    <RangeSlider id="range-beat" bind:values={beatRangeValue}  min={Track.MIN_BEAT} max={Track.MAX_BEAT} float pips all="label" {springValues} />
+    <RangeSlider bind:values={beatRangeValue} min={Track.MIN_BEAT} max={Track.MAX_BEAT} float pips all="label" />
 </div>
 
 <div>
-    Speed (bpm): <strong>{track.bpm}</strong>
-    <RangeSlider id="range-bpm" bind:values={bpmRangeValue} min={Track.MIN_BPM} max={Track.MAX_BPM} step=5 float pips pipstep=2 all="label" {springValues} />
+    Speed (bpm):
+    <RangeSlider bind:values={bpmRangeValue} min={Track.MIN_BPM} max={Track.MAX_BPM} step=5 float pips pipstep=2 all="label" />
 </div>
 
 {#if playing}
