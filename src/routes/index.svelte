@@ -1,26 +1,13 @@
 <script lang="ts">
     import Handpan from '../components/Handpan.svelte';
     import Track from '../components/Track.svelte';
-    import HandpanTune from "../classes/HandpanTune";
-    import {tune} from '../stores/tune';
-    import {track} from '../stores/track';
     import {onMount} from "svelte";
     import Player from "../classes/Player";
-
-    let tune_value: HandpanTune;
-    let track_value: Track;
-
-    tune.subscribe((value: HandpanTune) => tune_value = value);
-    track.subscribe((value: Track) => track_value = value);
+    import TrackList from "../components/TrackList.svelte";
 
     onMount(() => {
         Player.loadAudioFiles();
-
-        if (!track_value.notes.length) {
-            track.setDefault(tune_value);
-        }
     });
-
 </script>
 
 <style lang="scss">
@@ -39,12 +26,20 @@
 
 <div class="container">
 
-    <section>
-        <Handpan tune={tune_value} />
-    </section>
+    <aside>
 
-    <section id="track">
-        <Track track={track_value} tune={tune_value} />
-    </section>
+        <section>
+            <TrackList />
+        </section>
+
+        <section>
+            <Handpan />
+        </section>
+
+    </aside>
+
+    <aside id="track">
+        <Track />
+    </aside>
 
 </div>

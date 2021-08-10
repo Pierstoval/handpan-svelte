@@ -4,11 +4,29 @@
     import HandpanTune from "../classes/HandpanTune";
     import Player from "../classes/Player";
     import RangeSlider from "svelte-range-slider-pips";
+    import {trackStore} from "../stores/trackStore";
+    import {tuneStore} from "../stores/tuneStore";
 
-    export let track: Track;
-    export let tune: HandpanTune;
+    let tune: HandpanTune;
+
+    let track: Track;
+
+    let bpmRangeValue: number[] = [120];
+    let beatRangeValue: number[] = [4];
 
     let isPlaying = false;
+
+    trackStore.subscribe((value: Track) => {
+        track = (value || track);
+        bpmRangeValue = [track.bpm];
+        beatRangeValue = [track.beat];
+        if (tune) {
+            track.syncWithTune(tune);
+        }
+    });
+    tuneStore.subscribe((value: HandpanTune) => {
+        tune = (value || tune);
+    });
 
     function play() {
         isPlaying = true;
@@ -20,11 +38,12 @@
         Player.stop();
     }
 
-    let bpmRangeValue: number[] = [120];
-    let beatRangeValue: number[] = [4];
+    $: {
+        track.bpm = bpmRangeValue[0];
+        track.beat = beatRangeValue[0];
+    }
 
-    $: track.bpm = bpmRangeValue[0];
-    $: track.beat = beatRangeValue[0];
+    const springValues = { stiffness: 0.15, damping: 0.8 };
 </script>
 
 <style lang="scss">
@@ -61,12 +80,12 @@
 <section>
     <div>
         Beat:
-        <RangeSlider bind:values={beatRangeValue} min={Track.MIN_BEAT} max={Track.MAX_BEAT} float pips all="label" />
+        <RangeSlider bind:values={beatRangeValue} min={Track.MIN_BEAT} max={Track.MAX_BEAT} float pips all="label" {springValues} />
     </div>
 
     <div>
         Speed (bpm):
-        <RangeSlider bind:values={bpmRangeValue} min={Track.MIN_BPM} max={Track.MAX_BPM} float pips pipstep=10 all="label" />
+        <RangeSlider bind:values={bpmRangeValue} min={Track.MIN_BPM} max={Track.MAX_BPM} step="{5}" float pips pipstep="{2}" all="label" {springValues} />
     </div>
 
     {#if isPlaying}
@@ -80,8 +99,8 @@
     {/if}
 
     <div class="notes">
-        {#each track.notes as note}
-            <TrackNote note={note} tune={tune} />
+        {#each track.notes as trackNote}
+            <TrackNote trackNote={trackNote} tune={tune} />
         {/each}
     </div>
 </section>

@@ -1,13 +1,25 @@
 import {AvailableOctaves, HandpanNoteType, Note, NoteAlteration, NoteMidiNumberBase} from "./_structs";
 
 export default class HandpanNote {
-    public htmlElement: HTMLElement;
+    private _htmlElement: HTMLElement;
     private _note: Note;
     private _alteration: NoteAlteration;
     private _octave: number;
+    private _isPlaying: boolean = false;
     private readonly _type: HandpanNoteType;
     private readonly _position: number;
-    private _initialColor: string;
+
+    get htmlElement(): HTMLElement {
+        return this._htmlElement;
+    }
+
+    set htmlElement(value: HTMLElement) {
+        if (!value) {
+            console.warn('Tried to set empty html element to handpan note.');
+            return;
+        }
+        this._htmlElement = value;
+    }
 
     get octave(): number {
         return this._octave;
@@ -46,6 +58,10 @@ export default class HandpanNote {
 
     get fullName(): string {
         return this._note+this._alteration+this._octave
+    }
+
+    get isPlaying(): boolean {
+        return this._isPlaying;
     }
 
     get fullDetailedName(): string {
@@ -97,28 +113,30 @@ export default class HandpanNote {
             throw new Error('Note position must be a non-negative integer.');
         }
         this.refresh();
+        this.refreshHtmlElement();
     }
 
-
     public setPlaying(): void {
-        if (!this.htmlElement) {
-            console.warn(`Playing note "${this.fullName}" which is not attached to any HTML element. The issue might be that this not is not in your current handpan tune.`);
+        if (!this._htmlElement) {
+            console.warn(`Playing note is not attached to any HTML element. The issue might be that this not is not in your current handpan tune.`);
             return;
         }
 
-        if (!this._initialColor) {
-            this._initialColor = this.htmlElement.style.borderColor;
-        }
+        this._isPlaying = true;
 
-        this.htmlElement.firstElementChild.classList.add('playing');
+        this._htmlElement.classList.add('playing');
+        this._htmlElement.firstElementChild.classList.add('playing');
     }
 
     public stopPlaying(): void {
-        if (!this.htmlElement) {
+        if (!this._htmlElement) {
             return;
         }
 
-        this.htmlElement.firstElementChild.classList.remove('playing');
+        this._isPlaying = false;
+
+        this._htmlElement.classList.remove('playing');
+        this._htmlElement.firstElementChild.classList.remove('playing');
     }
 
     /**
@@ -127,7 +145,7 @@ export default class HandpanNote {
      *
      * This will also make sure we have notes *without flat*,
      * only sharp will be displayed, to standardize how music/mp3/flac/wav/etc. files
-     * will be stored in the project.
+     * will be stored in the project, even though a no-flat approach isn't complete standard…
      */
     private refresh(): void {
         const notesConversionTable = {
@@ -164,7 +182,15 @@ export default class HandpanNote {
         if (updateOctaveBy) {
             this._octave += updateOctaveBy;
         }
+    }
 
+    public refreshHtmlElement(): void {
+        if (typeof document === 'undefined') return; // SSR
 
+        const noteElement = document.querySelector(`[data-handpan-note="${this.fullName}"]`);
+
+        if (noteElement){
+            this.htmlElement = <HTMLElement>noteElement;
+        }
     }
 }

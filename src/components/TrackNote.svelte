@@ -3,17 +3,25 @@
     import HandpanTune from "../classes/HandpanTune";
     import {TrackNoteType} from "../classes/_structs";
     import Player from "../classes/Player";
+    import {onMount} from "svelte";
+    import {trackStore} from "../stores/trackStore";
 
-    export let note: TrackNote;
+    export let trackNote: TrackNote;
     export let tune: HandpanTune;
 
     const notes_types: Array<TrackNoteType> = Object.values(TrackNoteType);
 
+    trackStore.subscribe((value) => {
+        if (value) {
+            trackNote.refreshHtmlElement();
+        }
+    });
+
     function playNoteOnChange(): void {
-        Player.playNoteByType(note.fullName);
+        Player.playNote(trackNote);
     }
 
-    $: show_notes_menu = note.isNote;
+    onMount(() => trackNote.refreshHtmlElement());
 </script>
 
 <style lang="scss">
@@ -21,6 +29,7 @@
     position: relative;
     display: inline-block;
     margin: 0 10px;
+    color: #222;
 
     &:before,
     &:after {
@@ -100,11 +109,13 @@
         border-color: #e44;
         .track-note-menu {
           visibility: visible;
+          display: block;
         }
       }
 
       .track-note-menu {
         visibility: collapse;
+        display: none;
         width: 220px;
         position: absolute;
         z-index: 20;
@@ -141,10 +152,10 @@
   }
 </style>
 
-<div class="track-note-container" bind:this={note.htmlElement}>
-    <div class="track-note type-{note.type}">
+<div class="track-note-container" data-track-note="{trackNote.fullName}" bind:this={trackNote.htmlElement}>
+    <div class="track-note type-{trackNote.type}">
         <div class="note-name">
-            {note.fullName}
+            {trackNote.fullName}
         </div>
 
         <div class="track-note-menu">
@@ -152,7 +163,7 @@
             <div class="track_inputs_container">
                 <h3>Type</h3>
                 <div class="track_select_container">
-                    <select bind:value={note.type} size={notes_types.length}>
+                    <select bind:value={trackNote.type} size={notes_types.length}>
                         {#each notes_types as note_type}
                             <option value={note_type}>
                                 {note_type}
@@ -162,11 +173,11 @@
                 </div>
             </div>
 
-            {#if show_notes_menu === true}
+            {#if trackNote && tune && trackNote.isNote}
                 <div class="track_inputs_container">
                     <h3>Note</h3>
                     <div class="track_select_container">
-                        <select bind:value={note.note} size={tune.notes.length} on:change={playNoteOnChange}>
+                        <select bind:value={trackNote.note} size={tune.notes.length} on:change={playNoteOnChange}>
                             {#each tune.notes as tune_note }
                                 <option value={tune_note}>
                                     {tune_note.fullDetailedName}

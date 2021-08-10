@@ -20,7 +20,7 @@ export default class HandpanTune {
     }
 
     get notes(): Array<HandpanNote> {
-        return this._notes;
+        return this._notes || [];
     }
 
     public getTopNoteByPosition(position: number): HandpanNote | null {
@@ -53,23 +53,19 @@ export default class HandpanTune {
         return null;
     }
 
-    public numberOfDings(): number {
-        let numberOfDings = 0;
-
-        for (const note of this._notes) {
-            if (note.position <= 0) {
-                numberOfDings++;
-            }
+    public getSameNote(note: HandpanNote): HandpanNote|null {
+        if (!note) {
+            return null;
         }
 
-        return numberOfDings;
-    }
+        const filtered: Array<HandpanNote> = this._notes.filter((tuneNote: HandpanNote) => {
+            return tuneNote.fullName === note.fullName;
+        });
 
-    public numberOfNotes(): number {
-        return this.notes.length - this.numberOfDings();
-    }
+        if (filtered.length === 0) {
+            return null;
+        }
 
-    public highlightNote(note: HandpanNote): void {
-
+        return filtered[0];
     }
 }

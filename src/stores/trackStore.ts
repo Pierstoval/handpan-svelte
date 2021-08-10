@@ -12,22 +12,30 @@ import {
 } from "../classes/_structs";
 import HandpanNote from "../classes/HandpanNote";
 
-const baseValue = new Track();
+const { subscribe, set, update } = writable<Track>(getDefault());
 
-function createTrack() {
-    const { subscribe, set, update } = writable<Track>(baseValue);
-
-    function setDefault(tune: HandpanTune) {
-        set(allNotesTrack(tune, baseValue));
+function list(tune: HandpanTune): Array<Track> {
+    if (!tune) {
+        return [];
     }
 
-    return {
-        setDefault,
-        subscribe,
-    };
+    return [
+        allNotesTrack(),
+        demoTrack(tune),
+    ];
 }
 
-function demoTrack(tune: HandpanTune, track: Track): Track {
+function setDefault(): void {
+    set(getDefault());
+}
+
+function getDefault(): Track {
+    return allNotesTrack();
+}
+
+function demoTrack(tune: HandpanTune): Track {
+    const track = new Track('Demo');
+
     track.addNote(new TrackNote(tune.getDingByPosition(0), TrackNoteType.note));
     track.addNote(new TrackNote(tune.getTopNoteByPosition(2), TrackNoteType.note));
     track.addNote(new TrackNote(null, TrackNoteType.slap));
@@ -41,13 +49,17 @@ function demoTrack(tune: HandpanTune, track: Track): Track {
     return track;
 }
 
-function allNotesTrack(tune: HandpanTune, track: Track): Track {
+function allNotesTrack(): Track {
     /**
      * Skipped because we don't have sounds for them (yet?).
      */
     let i = 0;
 
     const notesToAdd = {};
+
+    const track = new Track('All notes');
+
+    track.bpm = 180;
 
     AvailableOctaves.forEach((octave) => {
         const notes = [Note.C, Note.D, Note.E, Note.F, Note.G, Note.A, Note.B];
@@ -72,4 +84,9 @@ function allNotesTrack(tune: HandpanTune, track: Track): Track {
     return track;
 }
 
-export const track = createTrack();
+export const trackStore = {
+    list,
+    setDefault,
+    subscribe,
+    set,
+};

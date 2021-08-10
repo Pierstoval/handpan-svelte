@@ -4,8 +4,19 @@ import type HandpanNote from "./HandpanNote";
 export default class TrackNote {
     public note: HandpanNote|null;
     public type: TrackNoteType;
-    public htmlElement: HTMLElement;
-    private _initialColor: string;
+    private _htmlElement: HTMLElement;
+
+    get htmlElement(): HTMLElement {
+        return this._htmlElement;
+    }
+
+    set htmlElement(value: HTMLElement|null) {
+        if (!value) {
+            console.error('Tried to set empty html element to track note.');
+            return;
+        }
+        this._htmlElement = value;
+    }
 
     get fullName(): string {
         switch(true) {
@@ -46,19 +57,16 @@ export default class TrackNote {
     ) {
         this.note = note;
         this.type = type;
+        this.refreshHtmlElement();
     }
 
     public setPlaying(): void {
-        if (!this.htmlElement) {
+        if (!this._htmlElement) {
             console.error(`Cannot highlight note ${this.fullName} because it does not have an HTML Element associated to it.`);
             return;
         }
 
-        if (!this._initialColor) {
-            this._initialColor = this.htmlElement.style.borderColor;
-        }
-
-        this.htmlElement.firstElementChild.classList.add('playing');
+        this._htmlElement.firstElementChild.classList.add('playing');
 
         if (this.note) {
             this.note.setPlaying();
@@ -66,15 +74,33 @@ export default class TrackNote {
     }
 
     public stopPlaying(): void {
-        if (!this.htmlElement) {
+        if (!this._htmlElement) {
             console.error(`Cannot disable highlight for note ${this.fullName} because it does not have an HTML Element associated to it.`);
             return;
         }
 
-        this.htmlElement.firstElementChild.classList.remove('playing');
+        this._htmlElement.firstElementChild.classList.remove('playing');
 
         if (this.note) {
             this.note.stopPlaying();
+        }
+    }
+
+    public syncWithTuneNote(note: HandpanNote): void {
+        if (!note) return;
+
+        this.note = note;
+        this.refreshHtmlElement();
+        note.refreshHtmlElement();
+    }
+
+    public refreshHtmlElement(): void {
+        if (typeof document === 'undefined') return; // SSR
+
+        const noteElement = document.querySelector(`[track="${this.fullName}"]`);
+
+        if (noteElement){
+            this.htmlElement = <HTMLElement>noteElement;
         }
     }
 }

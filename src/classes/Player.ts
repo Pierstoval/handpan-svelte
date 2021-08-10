@@ -138,7 +138,7 @@ export default class Player {
         }
     }
 
-    private static playNote(note: TrackNote): void {
+    public static playNote(note: TrackNote): void {
         note.setPlaying();
 
         this.playingNotes.push(note);

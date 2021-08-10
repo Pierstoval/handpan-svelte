@@ -2,8 +2,10 @@
     import {Note, NoteAlteration} from "../classes/_structs";
     import HandpanNote from "../classes/HandpanNote";
     import Player from "../classes/Player";
+    import {onMount} from "svelte";
 
     export let note: HandpanNote;
+    export let onChange;
 
     let show_menu = false;
 
@@ -11,13 +13,12 @@
     const available_octaves = [1, 2, 3, 4, 5];
     const available_alterations: Array<NoteAlteration> = Object.values(NoteAlteration);
 
-    function playNoteOnChange(): void {
+    function onNoteValueChange(): void {
+        if (onChange) { onChange(note); }
         Player.playNoteByType(note.fullName);
     }
 
-    function toggleMenu() {
-        show_menu = !show_menu;
-    }
+    onMount(() => note.refreshHtmlElement());
 </script>
 
 <style lang="scss">
@@ -25,6 +26,7 @@
     position: relative;
     display: inline-block;
     margin: 3px;
+    color: #222;
 
     .note {
       font-family: Arial, sans-serif;
@@ -39,6 +41,10 @@
       background: #eee;
       border: 3px solid #ccd;
       line-height: 47px;
+
+      &.playing {
+        border-color: red;
+      }
 
       .note-name {
         user-select: none;
@@ -90,8 +96,8 @@
   }
 </style>
 
-<div class="note-container" bind:this={note.htmlElement}>
-    <div class="note">
+<div class="note-container" data-handpan-note="{note.fullName}" bind:this={note.htmlElement}>
+    <div class="note {note.isPlaying ? 'playing' : ''}">
         <div class="note-name">
             {note.fullName}
         </div>
@@ -100,7 +106,7 @@
             <div class="inputs_container">
                 <h3>Note</h3>
                 <div class="select_container">
-                    <select bind:value={note.note} size={notes.length} on:change={playNoteOnChange}>
+                    <select bind:value={note.note} size={notes.length} on:change={onNoteValueChange}>
                         {#each notes as note_name}
                             <option value={note_name}>
                                 {note_name}
@@ -113,7 +119,7 @@
             <div class="inputs_container">
                 <h3>Octave</h3>
                 <div class="select_container">
-                    <select bind:value={note.octave} size={available_octaves.length} on:change={playNoteOnChange}>
+                    <select bind:value={note.octave} size={available_octaves.length} on:change={onNoteValueChange}>
                         {#each available_octaves as note_octave }
                             <option value={note_octave}>
                                 {note_octave}
@@ -126,7 +132,7 @@
             <div class="inputs_container">
                 <h3>Alteration</h3>
                 <div class="select_container">
-                    <select bind:value={note.alteration} size={available_alterations.length} on:change={playNoteOnChange}>
+                    <select bind:value={note.alteration} size={available_alterations.length} on:change={onNoteValueChange}>
                         {#each available_alterations as note_octave }
                             <option value={note_octave}>
                                 {note_octave}
