@@ -18,20 +18,20 @@
 
 <div class="notes-list">
 	{#each tune.topNotes as note, i (note)}
-		<HandpanNote {note} {onChange} />
+		<HandpanNote bind:note={note} {onChange} />
 	{/each}
 </div>
 
 <h3>Dings:</h3>
 <div class="notes-list">
 	{#each tune.dings as note, i (note)}
-		<HandpanNote {note} {onChange} />
+		<HandpanNote bind:note={note} {onChange} />
 	{/each}
 </div>
 
 <h3>Bottom notes:</h3>
 <div class="notes-list">
 	{#each tune.bottomNotes as note, i (note)}
-		<HandpanNote {note} {onChange} />
+		<HandpanNote bind:note={note} {onChange} />
 	{/each}
 </div>

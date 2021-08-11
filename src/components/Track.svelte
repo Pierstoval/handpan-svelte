@@ -85,7 +85,7 @@
 
 	<div class="notes">
 		{#each track.notes as trackNote}
-			<TrackNote {trackNote} {tune} />
+			<TrackNote bind:trackNote={trackNote} bind:tune={tune} />
 		{/each}
 	</div>
 </section>
