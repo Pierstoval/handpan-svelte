@@ -110,6 +110,7 @@
 		font-size: 25px;
 		text-align: center;
 		border: solid 2px #666;
+		color: white;
 		line-height: 20px;
 		background: none transparent;
 		cursor: pointer;
