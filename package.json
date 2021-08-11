@@ -1,37 +1,37 @@
 {
-  "name": "@orbitale/handpan-composer",
-  "version": "0.0.1",
-  "license": "AGPL-3.0",
-  "scripts": {
-    "dev": "svelte-kit dev",
-    "build": "svelte-kit build",
-    "preview": "svelte-kit preview",
-    "check": "svelte-check --tsconfig ./tsconfig.json",
-    "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
-    "lint": "prettier --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
-    "format": "prettier --write --plugin-search-dir=. ."
-  },
-  "devDependencies": {
-    "@sveltejs/adapter-static": "next",
-    "@sveltejs/kit": "next",
-    "@typescript-eslint/eslint-plugin": "^4.28.2",
-    "@typescript-eslint/parser": "^4.28.2",
-    "eslint": "^7.30.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-svelte3": "^3.2.0",
-    "node-sass": "^6.0.1",
-    "prettier": "^2.3.2",
-    "prettier-plugin-svelte": "^2.3.1",
-    "rollup": "^2.53.2",
-    "svelte": "^3.38.3",
-    "svelte-check": "^2.2.2",
-    "svelte-preprocess": "^4.7.4",
-    "svelte-range-slider-pips": "^1.8.0",
-    "tslib": "^2.3.0",
-    "typescript": "^4.3.5"
-  },
-  "type": "module",
-  "dependencies": {
-    "node-sass": "^6.0.1"
-  }
+	"name": "@orbitale/handpan-composer",
+	"version": "0.0.1",
+	"license": "AGPL-3.0",
+	"scripts": {
+		"dev": "svelte-kit dev",
+		"build": "svelte-kit build",
+		"preview": "svelte-kit preview",
+		"check": "svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "prettier --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
+		"format": "prettier --write --plugin-search-dir=. ."
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-static": "next",
+		"@sveltejs/kit": "next",
+		"@typescript-eslint/eslint-plugin": "^4.28.2",
+		"@typescript-eslint/parser": "^4.28.2",
+		"eslint": "^7.30.0",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-svelte3": "^3.2.0",
+		"node-sass": "^6.0.1",
+		"prettier": "^2.3.2",
+		"prettier-plugin-svelte": "^2.3.1",
+		"rollup": "^2.53.2",
+		"svelte": "^3.38.3",
+		"svelte-check": "^2.2.2",
+		"svelte-preprocess": "^4.7.4",
+		"svelte-range-slider-pips": "^1.8.0",
+		"tslib": "^2.3.0",
+		"typescript": "^4.3.5"
+	},
+	"type": "module",
+	"dependencies": {
+		"node-sass": "^6.0.1"
+	}
 }
