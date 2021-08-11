@@ -2,7 +2,7 @@
 	import { Note, NoteAlteration } from '../classes/_structs';
 	import HandpanNote from '../classes/HandpanNote';
 	import Player from '../classes/Player';
-	import { onMount } from 'svelte';
+	import {afterUpdate, onMount} from 'svelte';
 
 	export let note: HandpanNote;
 	export let onChange;
@@ -21,9 +21,10 @@
 	}
 
 	onMount(() => note.refreshHtmlElement());
+	afterUpdate(() => note.refreshHtmlElement());
 </script>
 
-<div class="note-container" data-handpan-note={note.fullName} bind:this={note.htmlElement}>
+<div class="note-container" data-handpan-note={note.fullName} >
 	<div class="note {note.isPlaying ? 'playing' : ''}">
 		<div class="note-name">
 			{note.fullName}

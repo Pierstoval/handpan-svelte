@@ -16,7 +16,6 @@
 	trackStore.subscribe((value: Track) => (currentTrack = value || currentTrack));
 
 	function changeTrackValue() {
-		console.info(tune);
 		trackStore.set(currentTrack);
 		currentTrack.syncWithTune(tune);
 	}

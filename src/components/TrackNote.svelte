@@ -3,7 +3,7 @@
 	import HandpanTune from '../classes/HandpanTune';
 	import { TrackNoteType } from '../classes/_structs';
 	import Player from '../classes/Player';
-	import { onMount } from 'svelte';
+	import {afterUpdate, onMount} from 'svelte';
 	import { trackStore } from '../stores/trackStore';
 
 	export let trackNote: TrackNote;
@@ -22,12 +22,13 @@
 	}
 
 	onMount(() => trackNote.refreshHtmlElement());
+	afterUpdate(() => trackNote.refreshHtmlElement());
 </script>
 
 <div
 	class="track-note-container"
 	data-track-note={trackNote.fullName}
-	bind:this={trackNote.htmlElement}
+
 >
 	<div class="track-note type-{trackNote.type}">
 		<div class="note-name">
