@@ -5,22 +5,31 @@
 		<link rel="icon" href="/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<style type="text/css">
-			* { margin: 0; padding: 0; box-sizing: border-box; }
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			html,
+			body {
+				background: #223;
+				color: #eee;
+			}
 		</style>
 		
 
 		
 
-		<link rel="modulepreload" href="./_app/start-5862cd8f.js">
+		<link rel="modulepreload" href="./_app/start-6cb1e96a.js">
 		<link rel="modulepreload" href="./_app/chunks/vendor-a96d677c.js">
 		<link rel="modulepreload" href="./_app/layout.svelte-0f48938b.js">
-		<link rel="modulepreload" href="./_app/pages/index.svelte-bdb31196.js">
+		<link rel="modulepreload" href="./_app/pages/index.svelte-9c82a6ab.js">
 		<link rel="stylesheet" href="./_app/assets/start-a8cd1609.css">
 		<link rel="stylesheet" href="./_app/assets/vendor-f8f0318e.css">
-		<link rel="stylesheet" href="./_app/assets/pages/index.svelte-d36635e8.css">
+		<link rel="stylesheet" href="./_app/assets/pages/index.svelte-e85d3da4.css">
 
 		<script type="module">
-			import { start } from "./_app/start-5862cd8f.js";
+			import { start } from "./_app/start-6cb1e96a.js";
 			start({
 				target: document.querySelector("#app"),
 				paths: {"base":"","assets":"/."},
@@ -34,7 +43,7 @@
 					error: null,
 					nodes: [
 						import("./_app/layout.svelte-0f48938b.js"),
-						import("./_app/pages/index.svelte-bdb31196.js")
+						import("./_app/pages/index.svelte-9c82a6ab.js")
 					],
 					page: {
 						host: location.host, // TODO this is redundant
@@ -50,256 +59,269 @@
 		<div id="app">
 
 
-<div class="container svelte-gg9dru"><section><h2>Tune</h2>
+<div class="container svelte-gg9dru"><aside><section><h2>Track list</h2>
+
+<select name="tracks_list" id="tracks_list" class="svelte-1nba3pp"></select></section>
+
+<section><h2>Tune</h2>
 
 <h3>Top notes:</h3>
 
-<div class="notes-list"><div class="note-container svelte-tsg8rn"><div class="note svelte-tsg8rn"><div class="note-name svelte-tsg8rn">A3</div>
-        <div class="note-menu  svelte-tsg8rn"><div class="inputs_container svelte-tsg8rn"><h3>Note</h3>
-                <div class="select_container svelte-tsg8rn"><select size="7" class="svelte-tsg8rn"><option value="A" class="svelte-tsg8rn">A
-                            </option><option value="B" class="svelte-tsg8rn">B
-                            </option><option value="C" class="svelte-tsg8rn">C
-                            </option><option value="D" class="svelte-tsg8rn">D
-                            </option><option value="E" class="svelte-tsg8rn">E
-                            </option><option value="F" class="svelte-tsg8rn">F
-                            </option><option value="G" class="svelte-tsg8rn">G
-                            </option></select></div></div>
+<div class="notes-list"><div class="note-container svelte-k6ts2a" data-handpan-note="A3"><div class="note  svelte-k6ts2a"><div class="note-name svelte-k6ts2a">A3</div>
+<div class="note-menu  svelte-k6ts2a"><div class="inputs_container svelte-k6ts2a"><h3>Note</h3>
+		<div class="select_container svelte-k6ts2a"><select size="7" class="svelte-k6ts2a"><option value="A" class="svelte-k6ts2a">A
+					</option><option value="B" class="svelte-k6ts2a">B
+					</option><option value="C" class="svelte-k6ts2a">C
+					</option><option value="D" class="svelte-k6ts2a">D
+					</option><option value="E" class="svelte-k6ts2a">E
+					</option><option value="F" class="svelte-k6ts2a">F
+					</option><option value="G" class="svelte-k6ts2a">G
+					</option></select></div></div>
 
-            <div class="inputs_container svelte-tsg8rn"><h3>Octave</h3>
-                <div class="select_container svelte-tsg8rn"><select size="5" class="svelte-tsg8rn"><option value="1" class="svelte-tsg8rn">1
-                            </option><option value="2" class="svelte-tsg8rn">2
-                            </option><option value="3" class="svelte-tsg8rn">3
-                            </option><option value="4" class="svelte-tsg8rn">4
-                            </option><option value="5" class="svelte-tsg8rn">5
-                            </option></select></div></div>
+	<div class="inputs_container svelte-k6ts2a"><h3>Octave</h3>
+		<div class="select_container svelte-k6ts2a"><select size="5" class="svelte-k6ts2a"><option value="1" class="svelte-k6ts2a">1
+					</option><option value="2" class="svelte-k6ts2a">2
+					</option><option value="3" class="svelte-k6ts2a">3
+					</option><option value="4" class="svelte-k6ts2a">4
+					</option><option value="5" class="svelte-k6ts2a">5
+					</option></select></div></div>
 
-            <div class="inputs_container svelte-tsg8rn"><h3>Alteration</h3>
-                <div class="select_container svelte-tsg8rn"><select size="3" class="svelte-tsg8rn"><option value="" class="svelte-tsg8rn">
-                            </option><option value="#" class="svelte-tsg8rn">#
-                            </option><option value="b" class="svelte-tsg8rn">b
-                            </option></select></div></div>
+	<div class="inputs_container svelte-k6ts2a"><h3>Alteration</h3>
+		<div class="select_container svelte-k6ts2a"><select size="3" class="svelte-k6ts2a"><option value="" class="svelte-k6ts2a">
+					</option><option value="#" class="svelte-k6ts2a">#
+					</option><option value="b" class="svelte-k6ts2a">b
+					</option></select></div></div>
 
-            <div><h4>Info</h4>
-                <ul><li>Midi: 57</li></ul></div></div></div></div><div class="note-container svelte-tsg8rn"><div class="note svelte-tsg8rn"><div class="note-name svelte-tsg8rn">B3</div>
-        <div class="note-menu  svelte-tsg8rn"><div class="inputs_container svelte-tsg8rn"><h3>Note</h3>
-                <div class="select_container svelte-tsg8rn"><select size="7" class="svelte-tsg8rn"><option value="A" class="svelte-tsg8rn">A
-                            </option><option value="B" class="svelte-tsg8rn">B
-                            </option><option value="C" class="svelte-tsg8rn">C
-                            </option><option value="D" class="svelte-tsg8rn">D
-                            </option><option value="E" class="svelte-tsg8rn">E
-                            </option><option value="F" class="svelte-tsg8rn">F
-                            </option><option value="G" class="svelte-tsg8rn">G
-                            </option></select></div></div>
+	<div><h4>Info</h4>
+		<ul><li>Midi: 57</li></ul></div></div></div>
+</div><div class="note-container svelte-k6ts2a" data-handpan-note="B3"><div class="note  svelte-k6ts2a"><div class="note-name svelte-k6ts2a">B3</div>
+<div class="note-menu  svelte-k6ts2a"><div class="inputs_container svelte-k6ts2a"><h3>Note</h3>
+		<div class="select_container svelte-k6ts2a"><select size="7" class="svelte-k6ts2a"><option value="A" class="svelte-k6ts2a">A
+					</option><option value="B" class="svelte-k6ts2a">B
+					</option><option value="C" class="svelte-k6ts2a">C
+					</option><option value="D" class="svelte-k6ts2a">D
+					</option><option value="E" class="svelte-k6ts2a">E
+					</option><option value="F" class="svelte-k6ts2a">F
+					</option><option value="G" class="svelte-k6ts2a">G
+					</option></select></div></div>
 
-            <div class="inputs_container svelte-tsg8rn"><h3>Octave</h3>
-                <div class="select_container svelte-tsg8rn"><select size="5" class="svelte-tsg8rn"><option value="1" class="svelte-tsg8rn">1
-                            </option><option value="2" class="svelte-tsg8rn">2
-                            </option><option value="3" class="svelte-tsg8rn">3
-                            </option><option value="4" class="svelte-tsg8rn">4
-                            </option><option value="5" class="svelte-tsg8rn">5
-                            </option></select></div></div>
+	<div class="inputs_container svelte-k6ts2a"><h3>Octave</h3>
+		<div class="select_container svelte-k6ts2a"><select size="5" class="svelte-k6ts2a"><option value="1" class="svelte-k6ts2a">1
+					</option><option value="2" class="svelte-k6ts2a">2
+					</option><option value="3" class="svelte-k6ts2a">3
+					</option><option value="4" class="svelte-k6ts2a">4
+					</option><option value="5" class="svelte-k6ts2a">5
+					</option></select></div></div>
 
-            <div class="inputs_container svelte-tsg8rn"><h3>Alteration</h3>
-                <div class="select_container svelte-tsg8rn"><select size="3" class="svelte-tsg8rn"><option value="" class="svelte-tsg8rn">
-                            </option><option value="#" class="svelte-tsg8rn">#
-                            </option><option value="b" class="svelte-tsg8rn">b
-                            </option></select></div></div>
+	<div class="inputs_container svelte-k6ts2a"><h3>Alteration</h3>
+		<div class="select_container svelte-k6ts2a"><select size="3" class="svelte-k6ts2a"><option value="" class="svelte-k6ts2a">
+					</option><option value="#" class="svelte-k6ts2a">#
+					</option><option value="b" class="svelte-k6ts2a">b
+					</option></select></div></div>
 
-            <div><h4>Info</h4>
-                <ul><li>Midi: 59</li></ul></div></div></div></div><div class="note-container svelte-tsg8rn"><div class="note svelte-tsg8rn"><div class="note-name svelte-tsg8rn">C#4</div>
-        <div class="note-menu  svelte-tsg8rn"><div class="inputs_container svelte-tsg8rn"><h3>Note</h3>
-                <div class="select_container svelte-tsg8rn"><select size="7" class="svelte-tsg8rn"><option value="A" class="svelte-tsg8rn">A
-                            </option><option value="B" class="svelte-tsg8rn">B
-                            </option><option value="C" class="svelte-tsg8rn">C
-                            </option><option value="D" class="svelte-tsg8rn">D
-                            </option><option value="E" class="svelte-tsg8rn">E
-                            </option><option value="F" class="svelte-tsg8rn">F
-                            </option><option value="G" class="svelte-tsg8rn">G
-                            </option></select></div></div>
+	<div><h4>Info</h4>
+		<ul><li>Midi: 59</li></ul></div></div></div>
+</div><div class="note-container svelte-k6ts2a" data-handpan-note="C#4"><div class="note  svelte-k6ts2a"><div class="note-name svelte-k6ts2a">C#4</div>
+<div class="note-menu  svelte-k6ts2a"><div class="inputs_container svelte-k6ts2a"><h3>Note</h3>
+		<div class="select_container svelte-k6ts2a"><select size="7" class="svelte-k6ts2a"><option value="A" class="svelte-k6ts2a">A
+					</option><option value="B" class="svelte-k6ts2a">B
+					</option><option value="C" class="svelte-k6ts2a">C
+					</option><option value="D" class="svelte-k6ts2a">D
+					</option><option value="E" class="svelte-k6ts2a">E
+					</option><option value="F" class="svelte-k6ts2a">F
+					</option><option value="G" class="svelte-k6ts2a">G
+					</option></select></div></div>
 
-            <div class="inputs_container svelte-tsg8rn"><h3>Octave</h3>
-                <div class="select_container svelte-tsg8rn"><select size="5" class="svelte-tsg8rn"><option value="1" class="svelte-tsg8rn">1
-                            </option><option value="2" class="svelte-tsg8rn">2
-                            </option><option value="3" class="svelte-tsg8rn">3
-                            </option><option value="4" class="svelte-tsg8rn">4
-                            </option><option value="5" class="svelte-tsg8rn">5
-                            </option></select></div></div>
+	<div class="inputs_container svelte-k6ts2a"><h3>Octave</h3>
+		<div class="select_container svelte-k6ts2a"><select size="5" class="svelte-k6ts2a"><option value="1" class="svelte-k6ts2a">1
+					</option><option value="2" class="svelte-k6ts2a">2
+					</option><option value="3" class="svelte-k6ts2a">3
+					</option><option value="4" class="svelte-k6ts2a">4
+					</option><option value="5" class="svelte-k6ts2a">5
+					</option></select></div></div>
 
-            <div class="inputs_container svelte-tsg8rn"><h3>Alteration</h3>
-                <div class="select_container svelte-tsg8rn"><select size="3" class="svelte-tsg8rn"><option value="" class="svelte-tsg8rn">
-                            </option><option value="#" class="svelte-tsg8rn">#
-                            </option><option value="b" class="svelte-tsg8rn">b
-                            </option></select></div></div>
+	<div class="inputs_container svelte-k6ts2a"><h3>Alteration</h3>
+		<div class="select_container svelte-k6ts2a"><select size="3" class="svelte-k6ts2a"><option value="" class="svelte-k6ts2a">
+					</option><option value="#" class="svelte-k6ts2a">#
+					</option><option value="b" class="svelte-k6ts2a">b
+					</option></select></div></div>
 
-            <div><h4>Info</h4>
-                <ul><li>Midi: 61</li></ul></div></div></div></div><div class="note-container svelte-tsg8rn"><div class="note svelte-tsg8rn"><div class="note-name svelte-tsg8rn">D#4</div>
-        <div class="note-menu  svelte-tsg8rn"><div class="inputs_container svelte-tsg8rn"><h3>Note</h3>
-                <div class="select_container svelte-tsg8rn"><select size="7" class="svelte-tsg8rn"><option value="A" class="svelte-tsg8rn">A
-                            </option><option value="B" class="svelte-tsg8rn">B
-                            </option><option value="C" class="svelte-tsg8rn">C
-                            </option><option value="D" class="svelte-tsg8rn">D
-                            </option><option value="E" class="svelte-tsg8rn">E
-                            </option><option value="F" class="svelte-tsg8rn">F
-                            </option><option value="G" class="svelte-tsg8rn">G
-                            </option></select></div></div>
+	<div><h4>Info</h4>
+		<ul><li>Midi: 61</li></ul></div></div></div>
+</div><div class="note-container svelte-k6ts2a" data-handpan-note="D#4"><div class="note  svelte-k6ts2a"><div class="note-name svelte-k6ts2a">D#4</div>
+<div class="note-menu  svelte-k6ts2a"><div class="inputs_container svelte-k6ts2a"><h3>Note</h3>
+		<div class="select_container svelte-k6ts2a"><select size="7" class="svelte-k6ts2a"><option value="A" class="svelte-k6ts2a">A
+					</option><option value="B" class="svelte-k6ts2a">B
+					</option><option value="C" class="svelte-k6ts2a">C
+					</option><option value="D" class="svelte-k6ts2a">D
+					</option><option value="E" class="svelte-k6ts2a">E
+					</option><option value="F" class="svelte-k6ts2a">F
+					</option><option value="G" class="svelte-k6ts2a">G
+					</option></select></div></div>
 
-            <div class="inputs_container svelte-tsg8rn"><h3>Octave</h3>
-                <div class="select_container svelte-tsg8rn"><select size="5" class="svelte-tsg8rn"><option value="1" class="svelte-tsg8rn">1
-                            </option><option value="2" class="svelte-tsg8rn">2
-                            </option><option value="3" class="svelte-tsg8rn">3
-                            </option><option value="4" class="svelte-tsg8rn">4
-                            </option><option value="5" class="svelte-tsg8rn">5
-                            </option></select></div></div>
+	<div class="inputs_container svelte-k6ts2a"><h3>Octave</h3>
+		<div class="select_container svelte-k6ts2a"><select size="5" class="svelte-k6ts2a"><option value="1" class="svelte-k6ts2a">1
+					</option><option value="2" class="svelte-k6ts2a">2
+					</option><option value="3" class="svelte-k6ts2a">3
+					</option><option value="4" class="svelte-k6ts2a">4
+					</option><option value="5" class="svelte-k6ts2a">5
+					</option></select></div></div>
 
-            <div class="inputs_container svelte-tsg8rn"><h3>Alteration</h3>
-                <div class="select_container svelte-tsg8rn"><select size="3" class="svelte-tsg8rn"><option value="" class="svelte-tsg8rn">
-                            </option><option value="#" class="svelte-tsg8rn">#
-                            </option><option value="b" class="svelte-tsg8rn">b
-                            </option></select></div></div>
+	<div class="inputs_container svelte-k6ts2a"><h3>Alteration</h3>
+		<div class="select_container svelte-k6ts2a"><select size="3" class="svelte-k6ts2a"><option value="" class="svelte-k6ts2a">
+					</option><option value="#" class="svelte-k6ts2a">#
+					</option><option value="b" class="svelte-k6ts2a">b
+					</option></select></div></div>
 
-            <div><h4>Info</h4>
-                <ul><li>Midi: 63</li></ul></div></div></div></div><div class="note-container svelte-tsg8rn"><div class="note svelte-tsg8rn"><div class="note-name svelte-tsg8rn">E4</div>
-        <div class="note-menu  svelte-tsg8rn"><div class="inputs_container svelte-tsg8rn"><h3>Note</h3>
-                <div class="select_container svelte-tsg8rn"><select size="7" class="svelte-tsg8rn"><option value="A" class="svelte-tsg8rn">A
-                            </option><option value="B" class="svelte-tsg8rn">B
-                            </option><option value="C" class="svelte-tsg8rn">C
-                            </option><option value="D" class="svelte-tsg8rn">D
-                            </option><option value="E" class="svelte-tsg8rn">E
-                            </option><option value="F" class="svelte-tsg8rn">F
-                            </option><option value="G" class="svelte-tsg8rn">G
-                            </option></select></div></div>
+	<div><h4>Info</h4>
+		<ul><li>Midi: 63</li></ul></div></div></div>
+</div><div class="note-container svelte-k6ts2a" data-handpan-note="E4"><div class="note  svelte-k6ts2a"><div class="note-name svelte-k6ts2a">E4</div>
+<div class="note-menu  svelte-k6ts2a"><div class="inputs_container svelte-k6ts2a"><h3>Note</h3>
+		<div class="select_container svelte-k6ts2a"><select size="7" class="svelte-k6ts2a"><option value="A" class="svelte-k6ts2a">A
+					</option><option value="B" class="svelte-k6ts2a">B
+					</option><option value="C" class="svelte-k6ts2a">C
+					</option><option value="D" class="svelte-k6ts2a">D
+					</option><option value="E" class="svelte-k6ts2a">E
+					</option><option value="F" class="svelte-k6ts2a">F
+					</option><option value="G" class="svelte-k6ts2a">G
+					</option></select></div></div>
 
-            <div class="inputs_container svelte-tsg8rn"><h3>Octave</h3>
-                <div class="select_container svelte-tsg8rn"><select size="5" class="svelte-tsg8rn"><option value="1" class="svelte-tsg8rn">1
-                            </option><option value="2" class="svelte-tsg8rn">2
-                            </option><option value="3" class="svelte-tsg8rn">3
-                            </option><option value="4" class="svelte-tsg8rn">4
-                            </option><option value="5" class="svelte-tsg8rn">5
-                            </option></select></div></div>
+	<div class="inputs_container svelte-k6ts2a"><h3>Octave</h3>
+		<div class="select_container svelte-k6ts2a"><select size="5" class="svelte-k6ts2a"><option value="1" class="svelte-k6ts2a">1
+					</option><option value="2" class="svelte-k6ts2a">2
+					</option><option value="3" class="svelte-k6ts2a">3
+					</option><option value="4" class="svelte-k6ts2a">4
+					</option><option value="5" class="svelte-k6ts2a">5
+					</option></select></div></div>
 
-            <div class="inputs_container svelte-tsg8rn"><h3>Alteration</h3>
-                <div class="select_container svelte-tsg8rn"><select size="3" class="svelte-tsg8rn"><option value="" class="svelte-tsg8rn">
-                            </option><option value="#" class="svelte-tsg8rn">#
-                            </option><option value="b" class="svelte-tsg8rn">b
-                            </option></select></div></div>
+	<div class="inputs_container svelte-k6ts2a"><h3>Alteration</h3>
+		<div class="select_container svelte-k6ts2a"><select size="3" class="svelte-k6ts2a"><option value="" class="svelte-k6ts2a">
+					</option><option value="#" class="svelte-k6ts2a">#
+					</option><option value="b" class="svelte-k6ts2a">b
+					</option></select></div></div>
 
-            <div><h4>Info</h4>
-                <ul><li>Midi: 64</li></ul></div></div></div></div><div class="note-container svelte-tsg8rn"><div class="note svelte-tsg8rn"><div class="note-name svelte-tsg8rn">F#4</div>
-        <div class="note-menu  svelte-tsg8rn"><div class="inputs_container svelte-tsg8rn"><h3>Note</h3>
-                <div class="select_container svelte-tsg8rn"><select size="7" class="svelte-tsg8rn"><option value="A" class="svelte-tsg8rn">A
-                            </option><option value="B" class="svelte-tsg8rn">B
-                            </option><option value="C" class="svelte-tsg8rn">C
-                            </option><option value="D" class="svelte-tsg8rn">D
-                            </option><option value="E" class="svelte-tsg8rn">E
-                            </option><option value="F" class="svelte-tsg8rn">F
-                            </option><option value="G" class="svelte-tsg8rn">G
-                            </option></select></div></div>
+	<div><h4>Info</h4>
+		<ul><li>Midi: 64</li></ul></div></div></div>
+</div><div class="note-container svelte-k6ts2a" data-handpan-note="F#4"><div class="note  svelte-k6ts2a"><div class="note-name svelte-k6ts2a">F#4</div>
+<div class="note-menu  svelte-k6ts2a"><div class="inputs_container svelte-k6ts2a"><h3>Note</h3>
+		<div class="select_container svelte-k6ts2a"><select size="7" class="svelte-k6ts2a"><option value="A" class="svelte-k6ts2a">A
+					</option><option value="B" class="svelte-k6ts2a">B
+					</option><option value="C" class="svelte-k6ts2a">C
+					</option><option value="D" class="svelte-k6ts2a">D
+					</option><option value="E" class="svelte-k6ts2a">E
+					</option><option value="F" class="svelte-k6ts2a">F
+					</option><option value="G" class="svelte-k6ts2a">G
+					</option></select></div></div>
 
-            <div class="inputs_container svelte-tsg8rn"><h3>Octave</h3>
-                <div class="select_container svelte-tsg8rn"><select size="5" class="svelte-tsg8rn"><option value="1" class="svelte-tsg8rn">1
-                            </option><option value="2" class="svelte-tsg8rn">2
-                            </option><option value="3" class="svelte-tsg8rn">3
-                            </option><option value="4" class="svelte-tsg8rn">4
-                            </option><option value="5" class="svelte-tsg8rn">5
-                            </option></select></div></div>
+	<div class="inputs_container svelte-k6ts2a"><h3>Octave</h3>
+		<div class="select_container svelte-k6ts2a"><select size="5" class="svelte-k6ts2a"><option value="1" class="svelte-k6ts2a">1
+					</option><option value="2" class="svelte-k6ts2a">2
+					</option><option value="3" class="svelte-k6ts2a">3
+					</option><option value="4" class="svelte-k6ts2a">4
+					</option><option value="5" class="svelte-k6ts2a">5
+					</option></select></div></div>
 
-            <div class="inputs_container svelte-tsg8rn"><h3>Alteration</h3>
-                <div class="select_container svelte-tsg8rn"><select size="3" class="svelte-tsg8rn"><option value="" class="svelte-tsg8rn">
-                            </option><option value="#" class="svelte-tsg8rn">#
-                            </option><option value="b" class="svelte-tsg8rn">b
-                            </option></select></div></div>
+	<div class="inputs_container svelte-k6ts2a"><h3>Alteration</h3>
+		<div class="select_container svelte-k6ts2a"><select size="3" class="svelte-k6ts2a"><option value="" class="svelte-k6ts2a">
+					</option><option value="#" class="svelte-k6ts2a">#
+					</option><option value="b" class="svelte-k6ts2a">b
+					</option></select></div></div>
 
-            <div><h4>Info</h4>
-                <ul><li>Midi: 66</li></ul></div></div></div></div><div class="note-container svelte-tsg8rn"><div class="note svelte-tsg8rn"><div class="note-name svelte-tsg8rn">G#4</div>
-        <div class="note-menu  svelte-tsg8rn"><div class="inputs_container svelte-tsg8rn"><h3>Note</h3>
-                <div class="select_container svelte-tsg8rn"><select size="7" class="svelte-tsg8rn"><option value="A" class="svelte-tsg8rn">A
-                            </option><option value="B" class="svelte-tsg8rn">B
-                            </option><option value="C" class="svelte-tsg8rn">C
-                            </option><option value="D" class="svelte-tsg8rn">D
-                            </option><option value="E" class="svelte-tsg8rn">E
-                            </option><option value="F" class="svelte-tsg8rn">F
-                            </option><option value="G" class="svelte-tsg8rn">G
-                            </option></select></div></div>
+	<div><h4>Info</h4>
+		<ul><li>Midi: 66</li></ul></div></div></div>
+</div><div class="note-container svelte-k6ts2a" data-handpan-note="G#4"><div class="note  svelte-k6ts2a"><div class="note-name svelte-k6ts2a">G#4</div>
+<div class="note-menu  svelte-k6ts2a"><div class="inputs_container svelte-k6ts2a"><h3>Note</h3>
+		<div class="select_container svelte-k6ts2a"><select size="7" class="svelte-k6ts2a"><option value="A" class="svelte-k6ts2a">A
+					</option><option value="B" class="svelte-k6ts2a">B
+					</option><option value="C" class="svelte-k6ts2a">C
+					</option><option value="D" class="svelte-k6ts2a">D
+					</option><option value="E" class="svelte-k6ts2a">E
+					</option><option value="F" class="svelte-k6ts2a">F
+					</option><option value="G" class="svelte-k6ts2a">G
+					</option></select></div></div>
 
-            <div class="inputs_container svelte-tsg8rn"><h3>Octave</h3>
-                <div class="select_container svelte-tsg8rn"><select size="5" class="svelte-tsg8rn"><option value="1" class="svelte-tsg8rn">1
-                            </option><option value="2" class="svelte-tsg8rn">2
-                            </option><option value="3" class="svelte-tsg8rn">3
-                            </option><option value="4" class="svelte-tsg8rn">4
-                            </option><option value="5" class="svelte-tsg8rn">5
-                            </option></select></div></div>
+	<div class="inputs_container svelte-k6ts2a"><h3>Octave</h3>
+		<div class="select_container svelte-k6ts2a"><select size="5" class="svelte-k6ts2a"><option value="1" class="svelte-k6ts2a">1
+					</option><option value="2" class="svelte-k6ts2a">2
+					</option><option value="3" class="svelte-k6ts2a">3
+					</option><option value="4" class="svelte-k6ts2a">4
+					</option><option value="5" class="svelte-k6ts2a">5
+					</option></select></div></div>
 
-            <div class="inputs_container svelte-tsg8rn"><h3>Alteration</h3>
-                <div class="select_container svelte-tsg8rn"><select size="3" class="svelte-tsg8rn"><option value="" class="svelte-tsg8rn">
-                            </option><option value="#" class="svelte-tsg8rn">#
-                            </option><option value="b" class="svelte-tsg8rn">b
-                            </option></select></div></div>
+	<div class="inputs_container svelte-k6ts2a"><h3>Alteration</h3>
+		<div class="select_container svelte-k6ts2a"><select size="3" class="svelte-k6ts2a"><option value="" class="svelte-k6ts2a">
+					</option><option value="#" class="svelte-k6ts2a">#
+					</option><option value="b" class="svelte-k6ts2a">b
+					</option></select></div></div>
 
-            <div><h4>Info</h4>
-                <ul><li>Midi: 68</li></ul></div></div></div></div></div>
+	<div><h4>Info</h4>
+		<ul><li>Midi: 68</li></ul></div></div></div>
+</div></div>
 
 <h3>Dings:</h3>
-<div class="notes-list"><div class="note-container svelte-tsg8rn"><div class="note svelte-tsg8rn"><div class="note-name svelte-tsg8rn">G3</div>
-        <div class="note-menu  svelte-tsg8rn"><div class="inputs_container svelte-tsg8rn"><h3>Note</h3>
-                <div class="select_container svelte-tsg8rn"><select size="7" class="svelte-tsg8rn"><option value="A" class="svelte-tsg8rn">A
-                            </option><option value="B" class="svelte-tsg8rn">B
-                            </option><option value="C" class="svelte-tsg8rn">C
-                            </option><option value="D" class="svelte-tsg8rn">D
-                            </option><option value="E" class="svelte-tsg8rn">E
-                            </option><option value="F" class="svelte-tsg8rn">F
-                            </option><option value="G" class="svelte-tsg8rn">G
-                            </option></select></div></div>
+<div class="notes-list"><div class="note-container svelte-k6ts2a" data-handpan-note="G3"><div class="note  svelte-k6ts2a"><div class="note-name svelte-k6ts2a">G3</div>
+<div class="note-menu  svelte-k6ts2a"><div class="inputs_container svelte-k6ts2a"><h3>Note</h3>
+		<div class="select_container svelte-k6ts2a"><select size="7" class="svelte-k6ts2a"><option value="A" class="svelte-k6ts2a">A
+					</option><option value="B" class="svelte-k6ts2a">B
+					</option><option value="C" class="svelte-k6ts2a">C
+					</option><option value="D" class="svelte-k6ts2a">D
+					</option><option value="E" class="svelte-k6ts2a">E
+					</option><option value="F" class="svelte-k6ts2a">F
+					</option><option value="G" class="svelte-k6ts2a">G
+					</option></select></div></div>
 
-            <div class="inputs_container svelte-tsg8rn"><h3>Octave</h3>
-                <div class="select_container svelte-tsg8rn"><select size="5" class="svelte-tsg8rn"><option value="1" class="svelte-tsg8rn">1
-                            </option><option value="2" class="svelte-tsg8rn">2
-                            </option><option value="3" class="svelte-tsg8rn">3
-                            </option><option value="4" class="svelte-tsg8rn">4
-                            </option><option value="5" class="svelte-tsg8rn">5
-                            </option></select></div></div>
+	<div class="inputs_container svelte-k6ts2a"><h3>Octave</h3>
+		<div class="select_container svelte-k6ts2a"><select size="5" class="svelte-k6ts2a"><option value="1" class="svelte-k6ts2a">1
+					</option><option value="2" class="svelte-k6ts2a">2
+					</option><option value="3" class="svelte-k6ts2a">3
+					</option><option value="4" class="svelte-k6ts2a">4
+					</option><option value="5" class="svelte-k6ts2a">5
+					</option></select></div></div>
 
-            <div class="inputs_container svelte-tsg8rn"><h3>Alteration</h3>
-                <div class="select_container svelte-tsg8rn"><select size="3" class="svelte-tsg8rn"><option value="" class="svelte-tsg8rn">
-                            </option><option value="#" class="svelte-tsg8rn">#
-                            </option><option value="b" class="svelte-tsg8rn">b
-                            </option></select></div></div>
+	<div class="inputs_container svelte-k6ts2a"><h3>Alteration</h3>
+		<div class="select_container svelte-k6ts2a"><select size="3" class="svelte-k6ts2a"><option value="" class="svelte-k6ts2a">
+					</option><option value="#" class="svelte-k6ts2a">#
+					</option><option value="b" class="svelte-k6ts2a">b
+					</option></select></div></div>
 
-            <div><h4>Info</h4>
-                <ul><li>Midi: 55</li></ul></div></div></div></div></div>
+	<div><h4>Info</h4>
+		<ul><li>Midi: 55</li></ul></div></div></div>
+</div></div>
 
 <h3>Bottom notes:</h3>
-<div class="notes-list"><div class="note-container svelte-tsg8rn"><div class="note svelte-tsg8rn"><div class="note-name svelte-tsg8rn">C#3</div>
-        <div class="note-menu  svelte-tsg8rn"><div class="inputs_container svelte-tsg8rn"><h3>Note</h3>
-                <div class="select_container svelte-tsg8rn"><select size="7" class="svelte-tsg8rn"><option value="A" class="svelte-tsg8rn">A
-                            </option><option value="B" class="svelte-tsg8rn">B
-                            </option><option value="C" class="svelte-tsg8rn">C
-                            </option><option value="D" class="svelte-tsg8rn">D
-                            </option><option value="E" class="svelte-tsg8rn">E
-                            </option><option value="F" class="svelte-tsg8rn">F
-                            </option><option value="G" class="svelte-tsg8rn">G
-                            </option></select></div></div>
+<div class="notes-list"><div class="note-container svelte-k6ts2a" data-handpan-note="C#3"><div class="note  svelte-k6ts2a"><div class="note-name svelte-k6ts2a">C#3</div>
+<div class="note-menu  svelte-k6ts2a"><div class="inputs_container svelte-k6ts2a"><h3>Note</h3>
+		<div class="select_container svelte-k6ts2a"><select size="7" class="svelte-k6ts2a"><option value="A" class="svelte-k6ts2a">A
+					</option><option value="B" class="svelte-k6ts2a">B
+					</option><option value="C" class="svelte-k6ts2a">C
+					</option><option value="D" class="svelte-k6ts2a">D
+					</option><option value="E" class="svelte-k6ts2a">E
+					</option><option value="F" class="svelte-k6ts2a">F
+					</option><option value="G" class="svelte-k6ts2a">G
+					</option></select></div></div>
 
-            <div class="inputs_container svelte-tsg8rn"><h3>Octave</h3>
-                <div class="select_container svelte-tsg8rn"><select size="5" class="svelte-tsg8rn"><option value="1" class="svelte-tsg8rn">1
-                            </option><option value="2" class="svelte-tsg8rn">2
-                            </option><option value="3" class="svelte-tsg8rn">3
-                            </option><option value="4" class="svelte-tsg8rn">4
-                            </option><option value="5" class="svelte-tsg8rn">5
-                            </option></select></div></div>
+	<div class="inputs_container svelte-k6ts2a"><h3>Octave</h3>
+		<div class="select_container svelte-k6ts2a"><select size="5" class="svelte-k6ts2a"><option value="1" class="svelte-k6ts2a">1
+					</option><option value="2" class="svelte-k6ts2a">2
+					</option><option value="3" class="svelte-k6ts2a">3
+					</option><option value="4" class="svelte-k6ts2a">4
+					</option><option value="5" class="svelte-k6ts2a">5
+					</option></select></div></div>
 
-            <div class="inputs_container svelte-tsg8rn"><h3>Alteration</h3>
-                <div class="select_container svelte-tsg8rn"><select size="3" class="svelte-tsg8rn"><option value="" class="svelte-tsg8rn">
-                            </option><option value="#" class="svelte-tsg8rn">#
-                            </option><option value="b" class="svelte-tsg8rn">b
-                            </option></select></div></div>
+	<div class="inputs_container svelte-k6ts2a"><h3>Alteration</h3>
+		<div class="select_container svelte-k6ts2a"><select size="3" class="svelte-k6ts2a"><option value="" class="svelte-k6ts2a">
+					</option><option value="#" class="svelte-k6ts2a">#
+					</option><option value="b" class="svelte-k6ts2a">b
+					</option></select></div></div>
 
-            <div><h4>Info</h4>
-                <ul><li>Midi: 49</li></ul></div></div></div></div></div></section>
+	<div><h4>Info</h4>
+		<ul><li>Midi: 49</li></ul></div></div></div>
+</div></div></section></aside>
 
-    <section id="track" class="svelte-gg9dru"><h2>Track</h2>
+	<aside id="track" class="svelte-gg9dru"><h2>Track</h2>
 
-<div>Beat:
-    <div class="rangeSlider       pips pip-labels"><span role="slider" class="rangeHandle hoverable" data-handle="0" style="left: 33.33%; z-index: 3;" aria-valuemin="2" aria-valuemax="8" aria-valuenow="4" aria-valuetext="4" aria-orientation="horizontal" aria-disabled="false"  tabindex="0"><span class="rangeNub"></span>
+<section class="svelte-1bjemq3"><div>Beat:
+<div class="rangeSlider       pips pip-labels"><span role="slider" class="rangeHandle hoverable" data-handle="0" style="left: 33.33%; z-index: 3;" aria-valuemin="2" aria-valuemax="8" aria-valuenow="4" aria-valuetext="4" aria-orientation="horizontal" aria-disabled="false"  tabindex="0"><span class="rangeNub"></span>
       <span class="rangeFloat">4
         </span>
     </span>
@@ -320,9 +342,9 @@
 
 </div>
 
-<div>Speed (bpm):
-    <div class="rangeSlider       pips pip-labels"><span role="slider" class="rangeHandle hoverable" data-handle="0" style="left: 46.67%; z-index: 3;" aria-valuemin="50" aria-valuemax="200" aria-valuenow="120" aria-valuetext="120" aria-orientation="horizontal" aria-disabled="false"  tabindex="0"><span class="rangeNub"></span>
-      <span class="rangeFloat">120
+	<div>Speed (bpm):
+<div class="rangeSlider       pips pip-labels"><span role="slider" class="rangeHandle hoverable" data-handle="0" style="left: 86.67%; z-index: 3;" aria-valuemin="50" aria-valuemax="200" aria-valuenow="180" aria-valuetext="180" aria-orientation="horizontal" aria-disabled="false"  tabindex="0"><span class="rangeNub"></span>
+      <span class="rangeFloat">180
         </span>
     </span>
   
@@ -339,7 +361,7 @@
             </span>
         </span><span class="pip" style="left: 40%;"><span class="pipVal">110
             </span>
-        </span><span class="pip selected" style="left: 46.67%;"><span class="pipVal">120
+        </span><span class="pip" style="left: 46.67%;"><span class="pipVal">120
             </span>
         </span><span class="pip" style="left: 53.33%;"><span class="pipVal">130
             </span>
@@ -351,7 +373,7 @@
             </span>
         </span><span class="pip" style="left: 80%;"><span class="pipVal">170
             </span>
-        </span><span class="pip" style="left: 86.67%;"><span class="pipVal">180
+        </span><span class="pip selected" style="left: 86.67%;"><span class="pipVal">180
             </span>
         </span><span class="pip" style="left: 93.33%;"><span class="pipVal">190
             </span>
@@ -360,10 +382,851 @@
 
 </div>
 
-<button type="button" class="track-control svelte-gnfwvg">⏯
-    </button>
+	<button type="button" class="track-control svelte-1bjemq3">⏯ </button>
 
-<div class="notes svelte-gnfwvg"></div></section></div>
+	<div class="notes svelte-1bjemq3"><div class="track-note-container svelte-fx1r0p" data-track-note="E2"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">E2</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="F2"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">F2</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="F#2"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">F#2</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="G2"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">G2</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="G#2"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">G#2</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="A2"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">A2</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="A#2"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">A#2</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="B2"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">B2</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="C3"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">C3</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="C#3"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">C#3</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="D3"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">D3</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="D#3"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">D#3</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="E3"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">E3</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="F3"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">F3</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="F#3"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">F#3</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="G3"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">G3</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="G#3"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">G#3</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="A3"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">A3</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="A#3"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">A#3</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="B3"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">B3</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="C4"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">C4</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="C#4"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">C#4</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="D4"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">D4</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="D#4"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">D#4</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="E4"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">E4</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="F4"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">F4</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="F#4"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">F#4</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="G4"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">G4</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="G#4"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">G#4</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="A4"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">A4</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="A#4"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">A#4</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="B4"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">B4</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="C5"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">C5</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="C#5"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">C#5</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="D5"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">D5</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="D#5"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">D#5</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="E5"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">E5</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="F5"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">F5</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="F#5"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">F#5</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="G5"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">G5</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="G#5"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">G#5</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div><div class="track-note-container svelte-fx1r0p" data-track-note="A5"><div class="track-note type-note svelte-fx1r0p"><div class="note-name svelte-fx1r0p">A5</div>
+
+<div class="track-note-menu svelte-fx1r0p"><div class="track_inputs_container svelte-fx1r0p"><h3>Type</h3>
+		<div class="track_select_container svelte-fx1r0p"><select size="4" class="svelte-fx1r0p"><option value="note" class="svelte-fx1r0p">note
+					</option><option value="slap" class="svelte-fx1r0p">slap
+					</option><option value="ghost" class="svelte-fx1r0p">ghost
+					</option><option value="none" class="svelte-fx1r0p">none
+					</option></select></div></div>
+
+	<div class="track_inputs_container svelte-fx1r0p"><h3>Note</h3>
+			<div class="track_select_container svelte-fx1r0p"><select size="9" class="svelte-fx1r0p"><option value="[object Object]" class="svelte-fx1r0p">0 - C#3 (bottom)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - G3 (ding)
+						</option><option value="[object Object]" class="svelte-fx1r0p">0 - A3
+						</option><option value="[object Object]" class="svelte-fx1r0p">1 - B3
+						</option><option value="[object Object]" class="svelte-fx1r0p">2 - C#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">3 - D#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">4 - E4
+						</option><option value="[object Object]" class="svelte-fx1r0p">5 - F#4
+						</option><option value="[object Object]" class="svelte-fx1r0p">6 - G#4
+						</option></select></div></div></div></div>
+</div></div>
+</section></aside>
+</div>
 
 
 
