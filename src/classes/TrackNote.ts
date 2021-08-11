@@ -94,17 +94,18 @@ export default class TrackNote {
 	}
 
 	public syncWithTuneNote(note: HandpanNote): void {
+		this.refreshHtmlElement();
+
 		if (!note) return;
 
 		this.note = note;
-		this.refreshHtmlElement();
 		note.refreshHtmlElement();
 	}
 
 	public refreshHtmlElement(): void {
 		if (typeof document === 'undefined') return; // SSR
 
-		const noteElement = document.querySelector(`[track="${this.fullName}"]`);
+		const noteElement = document.querySelector(`[data-track-note="${this.fullName}"]`);
 
 		if (noteElement) {
 			this.htmlElement = <HTMLElement>noteElement;
