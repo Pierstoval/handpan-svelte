@@ -2,10 +2,10 @@ import preprocess from 'svelte-preprocess';
 
 import adapter from '@sveltejs/adapter-static';
 
-let base_path = '';
+let base_path = '/';
 
 if (process.env.GITHUB_ACTION) {
-	base_path = '/handpan-svelte/';
+	base_path = '/handpan-svelte';
 }
 
 /** @type {import('@sveltejs/kit').Config} */
