@@ -28,7 +28,6 @@
 <div
 	class="track-note-container"
 	data-track-note={trackNote.fullName}
-
 >
 	<div class="track-note type-{trackNote.type}">
 		<div class="note-name">
@@ -55,7 +54,7 @@
 					<div class="track_select_container">
 						<select
 							bind:value={trackNote.note}
-							size={tune.notes.length}
+							size={tune.numberOfNotes}
 							on:change={playNoteOnChange}
 						>
 							{#each tune.notes as tune_note}

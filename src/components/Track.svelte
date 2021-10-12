@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Track from '../classes/Track';
 	import TrackNote from './TrackNote.svelte';
+	import TrackNoteAdd from './TrackNoteAdd.svelte';
 	import HandpanTune from '../classes/HandpanTune';
 	import Player from '../classes/Player';
 	import RangeSlider from 'svelte-range-slider-pips';
@@ -24,9 +25,7 @@
 			track.syncWithTune(tune);
 		}
 	});
-	tuneStore.subscribe((value: HandpanTune) => {
-		tune = value || tune;
-	});
+	tuneStore.subscribe((value: HandpanTune) => tune = value || tune);
 
 	function play() {
 		isPlaying = true;
@@ -84,8 +83,10 @@
 	{/if}
 
 	<div class="notes">
-		{#each track.notes as trackNote}
+		<TrackNoteAdd bind:tune={tune} />
+		{#each track.notes as trackNote, position}
 			<TrackNote bind:trackNote={trackNote} bind:tune={tune} />
+			<TrackNoteAdd position={position} />
 		{/each}
 	</div>
 </section>

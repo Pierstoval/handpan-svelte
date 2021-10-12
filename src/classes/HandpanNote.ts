@@ -11,9 +11,9 @@ export default class HandpanNote {
 	private _note: Note;
 	private _alteration: NoteAlteration;
 	private _octave: number;
-	private _isPlaying: boolean = false;
+	private _isPlaying = false;
+	private _position: number;
 	private readonly _type: HandpanNoteType;
-	private readonly _position: number;
 
 	get htmlElement(): HTMLElement {
 		return this._htmlElement;
@@ -123,6 +123,10 @@ export default class HandpanNote {
 		this.refreshHtmlElement();
 	}
 
+	public forcePosition(position: number): void {
+		this._position = position;
+	}
+
 	public setPlaying(): void {
 		if (!this._htmlElement) {
 			console.warn(
@@ -146,6 +150,16 @@ export default class HandpanNote {
 
 		this._htmlElement.classList.remove('playing');
 		this._htmlElement.firstElementChild.classList.remove('playing');
+	}
+
+	public refreshHtmlElement(): void {
+		if (typeof document === 'undefined') return; // SSR
+
+		const noteElement = document.querySelector(`[data-handpan-note="${this.fullName}"]`);
+
+		if (noteElement) {
+			this.htmlElement = <HTMLElement>noteElement;
+		}
 	}
 
 	/**
@@ -189,16 +203,6 @@ export default class HandpanNote {
 		[this._note, this._alteration, updateOctaveBy] = convertedNote;
 		if (updateOctaveBy) {
 			this._octave += updateOctaveBy;
-		}
-	}
-
-	public refreshHtmlElement(): void {
-		if (typeof document === 'undefined') return; // SSR
-
-		const noteElement = document.querySelector(`[data-handpan-note="${this.fullName}"]`);
-
-		if (noteElement) {
-			this.htmlElement = <HTMLElement>noteElement;
 		}
 	}
 }

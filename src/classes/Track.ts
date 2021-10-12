@@ -1,5 +1,5 @@
-import type TrackNote from './TrackNote';
 import type HandpanTune from './HandpanTune';
+import TrackNote from './TrackNote';
 
 export default class Track {
 	public static readonly MIN_BPM = 50;
@@ -55,6 +55,11 @@ export default class Track {
 	constructor(name: string) {
 		this._notes = [];
 		this._name = name;
+	}
+
+	public addNoteAt(position: number): void {
+		const note = TrackNote.createGhost();
+		this._notes.splice(position, 0, note);
 	}
 
 	public addNote(note: TrackNote): void {

@@ -28,5 +28,6 @@ function defaultTune(): HandpanTune {
 }
 export const tuneStore = {
 	setDefault,
-	subscribe
+	subscribe,
+	set
 };

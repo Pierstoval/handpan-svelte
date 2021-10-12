@@ -1,4 +1,4 @@
-import { TrackNoteType } from './_structs';
+import {TrackNoteType} from './_structs';
 import type HandpanNote from './HandpanNote';
 
 export default class TrackNote {
@@ -61,6 +61,10 @@ export default class TrackNote {
 		this.note = note;
 		this.type = type;
 		this.refreshHtmlElement();
+	}
+
+	public static createGhost(): TrackNote {
+		return new TrackNote(null, TrackNoteType.ghost);
 	}
 
 	public setPlaying(): void {
