@@ -20,7 +20,7 @@ jobs:
 
       - name: Prepare Github Pages setup 🔧
         run: |
-          sed -i .build/index.html -e "s/\/\.\//\.\//g"
+          # sed -i .build/index.html -e "s/\/\.\//\.\//g"
           touch .build/.nojekyll
 
       - name: Deploy 🚀
