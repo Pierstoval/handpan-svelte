@@ -59,7 +59,11 @@ export default class Track {
 
 	public addNoteAt(position: number): void {
 		const note = TrackNote.createGhost();
-		this._notes.splice(position, 0, note);
+		this._notes.splice(
+			position === 1 ? (position-1) : position,
+			0,
+			note
+		);
 	}
 
 	public addNote(note: TrackNote): void {

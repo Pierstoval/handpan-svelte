@@ -17,7 +17,7 @@
 
 	function changeTrackValue(changeEvent: Event) {
 		const index: number = parseInt(changeEvent.target?.value, 10);
-		if (isNaN(index) || !trackList[index]) {
+		if (!trackList[index]) {
 			throw 'Invalid track index selected.';
 		}
 

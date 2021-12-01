@@ -19,27 +19,27 @@
 <h3>Top notes:</h3>
 
 <div class="notes-list">
-	<HandpanNoteAdd position=0 type={HandpanNoteType.topNote}/>
+	<HandpanNoteAdd position={1} type={HandpanNoteType.topNote}/>
 	{#each tune.topNotes as note, i (note)}
 		<HandpanNote bind:note={note} {onChange} />
-		<HandpanNoteAdd position={i} type={HandpanNoteType.topNote}/>
+		<HandpanNoteAdd position={i+1} type={HandpanNoteType.topNote}/>
 	{/each}
 </div>
 
 <h3>Dings:</h3>
 <div class="notes-list">
-	<HandpanNoteAdd position=0 type={HandpanNoteType.ding}/>
+	<HandpanNoteAdd position={1} type={HandpanNoteType.ding}/>
 	{#each tune.dings as note, i (note)}
 		<HandpanNote bind:note={note} {onChange} />
-		<HandpanNoteAdd position={i} type={HandpanNoteType.ding}/>
+		<HandpanNoteAdd position={i+1} type={HandpanNoteType.ding}/>
 	{/each}
 </div>
 
 <h3>Bottom notes:</h3>
 <div class="notes-list">
-	<HandpanNoteAdd position=0 type={HandpanNoteType.bottomNote}/>
+	<HandpanNoteAdd position={1} type={HandpanNoteType.bottomNote}/>
 	{#each tune.bottomNotes as note, i (note)}
 		<HandpanNote bind:note={note} {onChange} />
-		<HandpanNoteAdd position={i} type={HandpanNoteType.bottomNote}/>
+		<HandpanNoteAdd position={i+1} type={HandpanNoteType.bottomNote}/>
 	{/each}
 </div>
