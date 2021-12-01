@@ -12,6 +12,22 @@ export default class HandpanTune {
 		this.refresh();
 	}
 
+	public static fromDeserializedJson(deserializedJson: any): HandpanTune {
+		if (!deserializedJson) {
+			throw 'Empty JSON cannot be used to create HandpanTune.';
+		}
+		if (
+			!deserializedJson._topNotes
+			|| !deserializedJson._dings
+			|| !deserializedJson._bottomNotes
+		) {
+			throw 'Handpan Tune incoming JSON does not contain all necessary fields.';
+		}
+
+		// TODO: finish deserializing
+		debugger;
+	}
+
 	get dings(): Array<HandpanNote> {
 		return this._dings;
 	}
@@ -48,8 +64,6 @@ export default class HandpanTune {
 	}
 
 	public addNoteAt(position: number, type: HandpanNoteType): void {
-		console.info('OK');
-
 		const note = new HandpanNote(
 			Note.A,
 			NoteAlteration.none,
