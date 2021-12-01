@@ -21,16 +21,18 @@
 		track = value || track;
 		bpmRangeValue = [track.bpm];
 		beatRangeValue = [track.beat];
-		if (tune) {
-			track.syncWithTune(tune);
-		}
+		syncTrackAndTune();
 	});
 	tuneStore.subscribe((value: HandpanTune) => {
 		tune = value || tune;
-		if (track) {
+		syncTrackAndTune();
+	});
+
+	function syncTrackAndTune() {
+		if (track && tune) {
 			track.syncWithTune(tune);
 		}
-	});
+	}
 
 	function play() {
 		isPlaying = true;

@@ -33,8 +33,6 @@ function getDefault(): Track {
 function demoTrack(tune: HandpanTune): Track {
 	const track = new Track('Demo');
 
-	debugger;
-
 	track.addNote(new TrackNote(tune.getDingByPosition(1), TrackNoteType.note));
 	track.addNote(new TrackNote(tune.getTopNoteByPosition(2), TrackNoteType.note));
 	track.addNote(new TrackNote(null, TrackNoteType.slap));
