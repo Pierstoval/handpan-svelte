@@ -85,16 +85,17 @@ export default class HandpanTune {
 	}
 
 	public getSameNote(note: HandpanNote): HandpanNote | null {
-		let similarNote = null;
 
-		switch (true) {
-			case note.isTop: similarNote = this.getTopNoteByPosition(note.position); break;
-			case note.isDing: similarNote = this.getDingByPosition(note.position); break;
-			case note.isBottom: similarNote = this.getBottomNoteByPosition(note.position); break;
-			default: throw new Error('Expected note to be either top, ding or bottom, and found an unsupported value.');
+		if (!note) {
+			debugger;
 		}
 
-		return similarNote;
+		switch (true) {
+			case note.isTop: return this.getTopNoteByPosition(note.position);
+			case note.isDing: return this.getDingByPosition(note.position);
+			case note.isBottom: return this.getBottomNoteByPosition(note.position);
+			default: throw new Error('Expected note to be either top, ding or bottom, and found an unsupported value.');
+		}
 	}
 
 	private refresh(): void {

@@ -3,7 +3,7 @@
     import {trackStore} from "../stores/trackStore";
 
     export let position: number;
-    export let track: Track;
+    let track: Track;
 
     trackStore.subscribe((value: Track) => track = value || track);
 

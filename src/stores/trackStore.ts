@@ -33,12 +33,14 @@ function getDefault(): Track {
 function demoTrack(tune: HandpanTune): Track {
 	const track = new Track('Demo');
 
-	track.addNote(new TrackNote(tune.getDingByPosition(0), TrackNoteType.note));
+	debugger;
+
+	track.addNote(new TrackNote(tune.getDingByPosition(1), TrackNoteType.note));
 	track.addNote(new TrackNote(tune.getTopNoteByPosition(2), TrackNoteType.note));
 	track.addNote(new TrackNote(null, TrackNoteType.slap));
 	track.addNote(new TrackNote(tune.getTopNoteByPosition(4), TrackNoteType.note));
 
-	track.addNote(new TrackNote(tune.getDingByPosition(0), TrackNoteType.note));
+	track.addNote(new TrackNote(tune.getDingByPosition(1), TrackNoteType.note));
 	track.addNote(new TrackNote(tune.getTopNoteByPosition(3), TrackNoteType.note));
 	track.addNote(new TrackNote(null, TrackNoteType.slap));
 	track.addNote(new TrackNote(tune.getTopNoteByPosition(5), TrackNoteType.note));
@@ -47,10 +49,7 @@ function demoTrack(tune: HandpanTune): Track {
 }
 
 function allNotesTrack(): Track {
-	/**
-	 * Skipped because we don't have sounds for them (yet?).
-	 */
-	let i = 0;
+	let handpanNotePosition = 1;
 
 	const notesToAdd = {};
 
@@ -63,17 +62,26 @@ function allNotesTrack(): Track {
 		notes.forEach((note: Note) => {
 			const alterations = [NoteAlteration.flat, NoteAlteration.none, NoteAlteration.sharp];
 			alterations.forEach((alteration: NoteAlteration) => {
-				const handpanNote = new HandpanNote(note, alteration, octave, HandpanNoteType.topNote, i++);
+				const handpanNote = new HandpanNote(
+					note,
+					alteration,
+					octave,
+					HandpanNoteType.topNote,
+					handpanNotePosition++
+				);
+
 				if (UnavailableNotes.includes(handpanNote.fullName)) {
 					return;
 				}
+
 				const trackNote = new TrackNote(handpanNote, TrackNoteType.note);
+
 				notesToAdd[trackNote.fullName] = trackNote;
 			});
 		});
 	});
 
-	for (let key in notesToAdd) {
+	for (const key in notesToAdd) {
 		const note = notesToAdd[key];
 		track.addNote(note);
 	}

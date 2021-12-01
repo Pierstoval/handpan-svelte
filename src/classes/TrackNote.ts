@@ -58,6 +58,9 @@ export default class TrackNote {
 	}
 
 	constructor(note: HandpanNote | null, type: TrackNoteType) {
+		if (!note && TrackNote.typeNeedsHandpanNote(type)) {
+			throw `Tried to create track note of type "${type}" with no HandpanNote, but this type needs one.`;
+		}
 		this.note = note;
 		this.type = type;
 		this.refreshHtmlElement();
@@ -100,8 +103,6 @@ export default class TrackNote {
 	public syncWithTuneNote(note: HandpanNote): void {
 		this.refreshHtmlElement();
 
-		if (!note) return;
-
 		this.note = note;
 		note.refreshHtmlElement();
 	}
@@ -114,5 +115,9 @@ export default class TrackNote {
 		if (noteElement) {
 			this.htmlElement = <HTMLElement>noteElement;
 		}
+	}
+
+	private static typeNeedsHandpanNote(type: TrackNoteType): boolean {
+		return type === TrackNoteType.note;
 	}
 }

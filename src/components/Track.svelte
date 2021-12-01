@@ -25,7 +25,12 @@
 			track.syncWithTune(tune);
 		}
 	});
-	tuneStore.subscribe((value: HandpanTune) => tune = value || tune);
+	tuneStore.subscribe((value: HandpanTune) => {
+		tune = value || tune;
+		if (track) {
+			track.syncWithTune(tune);
+		}
+	});
 
 	function play() {
 		isPlaying = true;
@@ -83,9 +88,9 @@
 	{/if}
 
 	<div class="notes">
-		<TrackNoteAdd bind:tune={tune} />
+		<TrackNoteAdd position={0} />
 		{#each track.notes as trackNote, position}
-			<TrackNote bind:trackNote={trackNote} bind:tune={tune} />
+			<TrackNote bind:trackNote={trackNote} />
 			<TrackNoteAdd position={position} />
 		{/each}
 	</div>

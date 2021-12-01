@@ -12,7 +12,10 @@ export default class HandpanNote {
 	private _alteration: NoteAlteration;
 	private _octave: number;
 	private _isPlaying = false;
+
+	// Position always start at 1, never at zero.
 	private _position: number;
+
 	private readonly _type: HandpanNoteType;
 
 	get htmlElement(): HTMLElement {
@@ -116,8 +119,8 @@ export default class HandpanNote {
 		this._octave = octave;
 		this._type = type;
 		this._position = position;
-		if (position < 0) {
-			throw new Error('Note position must be a non-negative integer.');
+		if (position <= 0) {
+			throw new Error('Note position must be a non-negative and non-zero integer.');
 		}
 		this.refresh();
 		this.refreshHtmlElement();

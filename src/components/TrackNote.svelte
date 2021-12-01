@@ -5,9 +5,10 @@
 	import Player from '../classes/Player';
 	import {afterUpdate, onMount} from 'svelte';
 	import { trackStore } from '../stores/trackStore';
+	import { tuneStore } from '../stores/tuneStore';
 
 	export let trackNote: TrackNote;
-	export let tune: HandpanTune;
+	let tune: HandpanTune;
 
 	const notes_types: Array<TrackNoteType> = Object.values(TrackNoteType);
 
@@ -15,6 +16,9 @@
 		if (value) {
 			trackNote.refreshHtmlElement();
 		}
+	});
+	tuneStore.subscribe((value) => {
+		tune = value;
 	});
 
 	function playNoteOnChange(): void {

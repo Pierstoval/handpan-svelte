@@ -68,7 +68,18 @@ export default class Track {
 
 	public syncWithTune(tune: HandpanTune): void {
 		this._notes.forEach((note: TrackNote) => {
-			note.syncWithTuneNote(tune.getSameNote(note.note));
+			if (!note.isNote) {
+				return;
+			}
+
+			const similarNote = tune.getSameNote(note.note);
+
+			if (!similarNote) {
+				console.warn(`Note ${note.fullName} is in the current track but was not found in the handpan tune.`);
+				return;
+			}
+
+			note.syncWithTuneNote(similarNote);
 		});
 	}
 }
