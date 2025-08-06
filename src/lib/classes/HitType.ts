@@ -16,28 +16,20 @@ export default class HitType {
 		{ type: 'harmonic', needs_notes: 1 }
 	];
 
-	private readonly _name: string;
-	private readonly _needs_notes: number;
-
-	get name(): string {
-		return this._name;
-	}
-
-	get needs_notes(): number {
-		return this._needs_notes;
-	}
+	public readonly type: string;
+	public readonly needs_notes: number;
 
 	private constructor(type: string, needs_notes: number) {
 		if (!HitType.isValidHitType(type)) {
 			throw 'Invalid hit type';
 		}
 
-		this._name = type;
-		this._needs_notes = needs_notes;
+		this.type = type;
+		this.needs_notes = needs_notes;
 	}
 
 	public static fromName(name: string): HitType {
-		for (let type of this.types) {
+		for (const type of this.types) {
 			if (type.type === name) {
 				return new HitType(type.type, type.needs_notes);
 			}
@@ -47,7 +39,7 @@ export default class HitType {
 	}
 
 	private static isValidHitType(type: string): boolean {
-		let hitType = this.types.filter(function (item) {
+		const hitType = this.types.filter(function (item) {
 			return item.type === type;
 		});
 

@@ -22,10 +22,6 @@ function list(tune: HandpanTune): Array<Track> {
 	return [allNotesTrack(), demoTrack(tune)];
 }
 
-function setDefault(): void {
-	set(getDefault());
-}
-
 function getDefault(): Track {
 	return allNotesTrack();
 }
@@ -49,7 +45,7 @@ function demoTrack(tune: HandpanTune): Track {
 function allNotesTrack(): Track {
 	let handpanNotePosition = 1;
 
-	const notesToAdd = {};
+	const notesToAdd: { [key: string]: TrackNote } = {};
 
 	const track = new Track('All notes');
 
@@ -89,7 +85,6 @@ function allNotesTrack(): Track {
 
 export const trackStore = {
 	list,
-	setDefault,
 	subscribe,
 	set
 };

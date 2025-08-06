@@ -35,7 +35,7 @@
 	onMount(() => {
 		trackList = trackStore.list(tune);
 		storage = window.localStorage;
-		const currentTrackIndex = parseInt(storage.getItem('current_track'), 10);
+		const currentTrackIndex = parseInt(String(storage.getItem('current_track')), 10);
 		if (!isNaN(currentTrackIndex)) {
 			changeCurrentTrack(currentTrackIndex);
 		}
@@ -45,7 +45,7 @@
 <h2>Track list</h2>
 
 <select name="tracks_list" id="tracks_list" on:change={onTrackValueChange}>
-	{#each trackList as track_item, index}
+	{#each trackList as track_item, index (track_item.name)}
 		<option value={index}>
 			{track_item.name}
 		</option>

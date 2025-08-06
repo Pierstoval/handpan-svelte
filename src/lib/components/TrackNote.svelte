@@ -40,7 +40,7 @@
 				<h3>Type</h3>
 				<div class="track_select_container">
 					<select bind:value={trackNote.type} size={notes_types.length}>
-						{#each notes_types as note_type}
+						{#each notes_types as note_type (note_type)}
 							<option value={note_type}>
 								{note_type}
 							</option>
@@ -58,7 +58,7 @@
 							size={tune.numberOfNotes}
 							on:change={playNoteOnChange}
 						>
-							{#each tune.notes as tune_note}
+							{#each tune.notes as tune_note (tune_note.fullName)}
 								<option value={tune_note}>
 									{tune_note.fullDetailedName}
 								</option>

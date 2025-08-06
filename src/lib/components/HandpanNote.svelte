@@ -34,7 +34,7 @@
 				<h3>Note</h3>
 				<div class="select_container">
 					<select bind:value={note.note} size={notes.length} on:change={onNoteValueChange}>
-						{#each notes as note_name}
+						{#each notes as note_name (note_name)}
 							<option value={note_name}>
 								{note_name}
 							</option>
@@ -51,7 +51,7 @@
 						size={available_octaves.length}
 						on:change={onNoteValueChange}
 					>
-						{#each available_octaves as note_octave}
+						{#each available_octaves as note_octave (note_octave)}
 							<option value={note_octave}>
 								{note_octave}
 							</option>
@@ -68,7 +68,7 @@
 						size={available_alterations.length}
 						on:change={onNoteValueChange}
 					>
-						{#each available_alterations as note_octave}
+						{#each available_alterations as note_octave (note_octave)}
 							<option value={note_octave}>
 								{note_octave}
 							</option>

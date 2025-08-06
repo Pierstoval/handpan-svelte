@@ -12,7 +12,7 @@ export default class HandpanTune {
 		this.refresh();
 	}
 
-	public static fromDeserializedJson(deserializedJson: any): HandpanTune {
+	public static fromDeserializedJson(deserializedJson: { [key: string]: unknown }): HandpanTune {
 		if (!deserializedJson) {
 			throw 'Empty JSON cannot be used to create HandpanTune.';
 		}
@@ -21,7 +21,9 @@ export default class HandpanTune {
 		}
 
 		// TODO: finish deserializing
-		debugger;
+		//debugger;
+
+		return new HandpanTune([]);
 	}
 
 	get dings(): Array<HandpanNote> {
@@ -40,8 +42,9 @@ export default class HandpanTune {
 		return this._topNotes.length + this._dings.length + this._bottomNotes.length;
 	}
 
+	// TODO: change implementation.
 	get notes(): Array<HandpanNote> {
-		return this._notes || [];
+		return [];
 	}
 
 	public addNote(note: HandpanNote): void {

@@ -91,7 +91,7 @@
 
 	<div class="notes">
 		<TrackNoteAdd position={1} />
-		{#each track.notes as trackNote, position}
+		{#each track.notes as trackNote, position (trackNote.fullName)}
 			<TrackNote bind:trackNote />
 			<TrackNoteAdd position={position + 1} />
 		{/each}
