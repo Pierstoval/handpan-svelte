@@ -12,7 +12,7 @@ import {
 } from '../classes/_structs';
 import HandpanNote from '../classes/HandpanNote';
 
-const { subscribe, set, update } = writable<Track>(getDefault());
+const { subscribe, set } = writable<Track>(getDefault());
 
 function list(tune: HandpanTune): Array<Track> {
 	if (!tune) {

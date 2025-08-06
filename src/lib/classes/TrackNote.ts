@@ -1,4 +1,4 @@
-import {TrackNoteType} from './_structs';
+import { TrackNoteType } from './_structs';
 import type HandpanNote from './HandpanNote';
 
 export default class TrackNote {

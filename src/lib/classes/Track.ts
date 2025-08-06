@@ -59,11 +59,7 @@ export default class Track {
 
 	public addNoteAt(position: number): void {
 		const note = TrackNote.createGhost();
-		this._notes.splice(
-			position === 1 ? (position-1) : position,
-			0,
-			note
-		);
+		this._notes.splice(position === 1 ? position - 1 : position, 0, note);
 	}
 
 	public addNote(note: TrackNote): void {
@@ -79,7 +75,9 @@ export default class Track {
 			const similarNote = tune.getSameNote(note.note);
 
 			if (!similarNote) {
-				console.warn(`Note ${note.fullName} is in the current track but was not found in the handpan tune.`);
+				console.warn(
+					`Note ${note.fullName} is in the current track but was not found in the handpan tune.`
+				);
 				return;
 			}
 

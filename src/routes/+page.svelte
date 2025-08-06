@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Handpan from '../components/Handpan.svelte';
-	import Track from '../components/Track.svelte';
 	import { onMount } from 'svelte';
-	import Player from '../classes/Player';
-	import TrackList from '../components/TrackList.svelte';
+	import Handpan from '$lib/components/Handpan.svelte';
+	import Track from '$lib/components/Track.svelte';
+	import Player from '$lib/classes/Player';
+	import TrackList from '$lib/components/TrackList.svelte';
 
 	onMount(() => {
 		Player.loadAudioFiles();

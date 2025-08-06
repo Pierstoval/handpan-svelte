@@ -1,6 +1,5 @@
-import preprocess from 'svelte-preprocess';
-
 import adapter from '@sveltejs/adapter-static';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 let base_path = '';
 
@@ -10,10 +9,9 @@ if (process.env.GITHUB_ACTION) {
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	// Consult https://github.com/sveltejs/svelte-preprocess
+	// Consult https://svelte.dev/docs/kit/integrations
 	// for more information about preprocessors
-	preprocess: preprocess(),
-
+	preprocess: vitePreprocess(),
 	kit: {
 		adapter: adapter({
 			pages: '.build',
@@ -22,11 +20,8 @@ const config = {
 		}),
 
 		paths: {
-			base: base_path,
-		},
-
-		// hydrate the <div id="app"> element in src/app.html
-		target: '#app'
+			base: base_path
+		}
 	}
 };
 

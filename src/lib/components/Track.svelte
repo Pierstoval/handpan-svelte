@@ -92,8 +92,8 @@
 	<div class="notes">
 		<TrackNoteAdd position={1} />
 		{#each track.notes as trackNote, position}
-			<TrackNote bind:trackNote={trackNote} />
-			<TrackNoteAdd position={position+1} />
+			<TrackNote bind:trackNote />
+			<TrackNoteAdd position={position + 1} />
 		{/each}
 	</div>
 </section>

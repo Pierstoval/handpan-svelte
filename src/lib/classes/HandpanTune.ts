@@ -1,5 +1,5 @@
 import HandpanNote from './HandpanNote';
-import {HandpanNoteType, Note, NoteAlteration} from "./_structs";
+import { HandpanNoteType, Note, NoteAlteration } from './_structs';
 
 export default class HandpanTune {
 	private readonly _topNotes: Array<HandpanNote> = [];
@@ -16,11 +16,7 @@ export default class HandpanTune {
 		if (!deserializedJson) {
 			throw 'Empty JSON cannot be used to create HandpanTune.';
 		}
-		if (
-			!deserializedJson._topNotes
-			|| !deserializedJson._dings
-			|| !deserializedJson._bottomNotes
-		) {
+		if (!deserializedJson._topNotes || !deserializedJson._dings || !deserializedJson._bottomNotes) {
 			throw 'Handpan Tune incoming JSON does not contain all necessary fields.';
 		}
 
@@ -41,9 +37,7 @@ export default class HandpanTune {
 	}
 
 	get numberOfNotes(): number {
-		return this._topNotes.length
-			+ this._dings.length
-			+ this._bottomNotes.length;
+		return this._topNotes.length + this._dings.length + this._bottomNotes.length;
 	}
 
 	get notes(): Array<HandpanNote> {
@@ -64,28 +58,27 @@ export default class HandpanTune {
 	}
 
 	public addNoteAt(position: number, type: HandpanNoteType): void {
-		const note = new HandpanNote(
-			Note.A,
-			NoteAlteration.none,
-			3,
-			type,
-			position,
-		);
+		const note = new HandpanNote(Note.A, NoteAlteration.none, 3, type, position);
 
 		let notes: Array<HandpanNote> = [];
 
 		switch (type) {
-			case HandpanNoteType.topNote: notes = this.topNotes; break;
-			case HandpanNoteType.bottomNote: notes = this.bottomNotes; break;
-			case HandpanNoteType.ding: notes = this.dings; break;
-			default: throw new Error('Expected note to be either top, ding or bottom, and found an unsupported value.');
+			case HandpanNoteType.topNote:
+				notes = this.topNotes;
+				break;
+			case HandpanNoteType.bottomNote:
+				notes = this.bottomNotes;
+				break;
+			case HandpanNoteType.ding:
+				notes = this.dings;
+				break;
+			default:
+				throw new Error(
+					'Expected note to be either top, ding or bottom, and found an unsupported value.'
+				);
 		}
 
-		notes.splice(
-			position === 1 ? (position-1) : position,
-			0,
-			note
-		);
+		notes.splice(position === 1 ? position - 1 : position, 0, note);
 	}
 
 	public getTopNoteByPosition(position: number): HandpanNote | null {
@@ -120,20 +113,30 @@ export default class HandpanTune {
 
 	public getSameNote(note: HandpanNote): HandpanNote | null {
 		switch (true) {
-			case note.isTop: return this.getTopNoteByPosition(note.position);
-			case note.isDing: return this.getDingByPosition(note.position);
-			case note.isBottom: return this.getBottomNoteByPosition(note.position);
-			default: throw new Error('Expected note to be either top, ding or bottom, and found an unsupported value.');
+			case note.isTop:
+				return this.getTopNoteByPosition(note.position);
+			case note.isDing:
+				return this.getDingByPosition(note.position);
+			case note.isBottom:
+				return this.getBottomNoteByPosition(note.position);
+			default:
+				throw new Error(
+					'Expected note to be either top, ding or bottom, and found an unsupported value.'
+				);
 		}
 	}
 
 	private refresh(): void {
 		const sortFunction = (n1: HandpanNote, n2: HandpanNote) => {
-			const p1 = n1.position, p2 = n2.position;
-			switch(true) {
-				case p1 < p2: return -1;
-				case p1 === p2: throw new Error('Two notes cannot have the same position!');
-				case p1 > p2: return 1;
+			const p1 = n1.position,
+				p2 = n2.position;
+			switch (true) {
+				case p1 < p2:
+					return -1;
+				case p1 === p2:
+					throw new Error('Two notes cannot have the same position!');
+				case p1 > p2:
+					return 1;
 			}
 		};
 

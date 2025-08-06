@@ -2,8 +2,8 @@
 	import HandpanNote from './HandpanNote.svelte';
 	import HandpanTune from '../classes/HandpanTune';
 	import { tuneStore } from '../stores/tuneStore';
-	import HandpanNoteAdd from "./HandpanNoteAdd.svelte";
-	import {HandpanNoteType} from "../classes/_structs";
+	import HandpanNoteAdd from './HandpanNoteAdd.svelte';
+	import { HandpanNoteType } from '../classes/_structs';
 
 	let tune: HandpanTune;
 
@@ -19,27 +19,27 @@
 <h3>Top notes:</h3>
 
 <div class="notes-list">
-	<HandpanNoteAdd position={1} type={HandpanNoteType.topNote}/>
+	<HandpanNoteAdd position={1} type={HandpanNoteType.topNote} />
 	{#each tune.topNotes as note, i (note)}
-		<HandpanNote bind:note={note} {onChange} />
-		<HandpanNoteAdd position={i+1} type={HandpanNoteType.topNote}/>
+		<HandpanNote bind:note {onChange} />
+		<HandpanNoteAdd position={i + 1} type={HandpanNoteType.topNote} />
 	{/each}
 </div>
 
 <h3>Dings:</h3>
 <div class="notes-list">
-	<HandpanNoteAdd position={1} type={HandpanNoteType.ding}/>
+	<HandpanNoteAdd position={1} type={HandpanNoteType.ding} />
 	{#each tune.dings as note, i (note)}
-		<HandpanNote bind:note={note} {onChange} />
-		<HandpanNoteAdd position={i+1} type={HandpanNoteType.ding}/>
+		<HandpanNote bind:note {onChange} />
+		<HandpanNoteAdd position={i + 1} type={HandpanNoteType.ding} />
 	{/each}
 </div>
 
 <h3>Bottom notes:</h3>
 <div class="notes-list">
-	<HandpanNoteAdd position={1} type={HandpanNoteType.bottomNote}/>
+	<HandpanNoteAdd position={1} type={HandpanNoteType.bottomNote} />
 	{#each tune.bottomNotes as note, i (note)}
-		<HandpanNote bind:note={note} {onChange} />
-		<HandpanNoteAdd position={i+1} type={HandpanNoteType.bottomNote}/>
+		<HandpanNote bind:note {onChange} />
+		<HandpanNoteAdd position={i + 1} type={HandpanNoteType.bottomNote} />
 	{/each}
 </div>
