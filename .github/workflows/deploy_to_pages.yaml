@@ -23,12 +23,12 @@ jobs:
 
       - name: Prepare Github Pages setup 🔧
         run: |
-          # sed -i .build/index.html -e "s/\/\.\//\.\//g"
-          touch .build/.nojekyll
+          # sed -i build/index.html -e "s/\/\.\//\.\//g"
+          touch build/.nojekyll
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: gh-pages
-          folder: ${{ github.workspace }}/.build
+          folder: ${{ github.workspace }}/build
           clean: true
