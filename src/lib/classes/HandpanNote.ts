@@ -15,7 +15,7 @@ export default class HandpanNote {
 	private _isPlaying = false;
 
 	// Position always start at 1, never at zero.
-	private _position: number;
+	public position: number;
 
 	private readonly _type: HandpanNoteType;
 
@@ -73,10 +73,6 @@ export default class HandpanNote {
 		return this._type;
 	}
 
-	get position(): number {
-		return this._position;
-	}
-
 	get fullName(): string {
 		return this._note + this._alteration + this._octave;
 	}
@@ -90,7 +86,7 @@ export default class HandpanNote {
 			(this.isDing ? ' Ding' : '') +
 			(this.isBottom ? ' Bottom' : '') +
 			(this.isDing || this.isBottom ? ' - ' : '') +
-			this._position +
+			this.position +
 			' - ' +
 			this.fullName
 		);
@@ -135,7 +131,7 @@ export default class HandpanNote {
 		this._alteration = alteration;
 		this._octave = octave;
 		this._type = type;
-		this._position = position;
+		this.position = position;
 		if (position < 0) {
 			throw new Error('Note position must be a non-negative and non-zero integer.');
 		}
@@ -145,7 +141,7 @@ export default class HandpanNote {
 	}
 
 	public forcePosition(position: number): void {
-		this._position = position;
+		this.position = position;
 	}
 
 	public setPlaying(): void {

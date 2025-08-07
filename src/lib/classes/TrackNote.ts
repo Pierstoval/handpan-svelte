@@ -4,7 +4,7 @@ import type HandpanNote from './HandpanNote';
 export default class TrackNote {
 	private _id: string;
 	public readonly type: TrackNoteType;
-	public readonly position: number;
+	public position: number;
 	private _note: HandpanNote | null;
 	private _htmlElement: HTMLElement | null = null;
 

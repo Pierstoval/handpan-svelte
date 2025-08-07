@@ -1,43 +1,25 @@
 <script lang="ts">
-	import Track from '../classes/Track';
-	import TrackNote from './TrackNote.svelte';
-	import TrackNoteAdd from './TrackNoteAdd.svelte';
-	import HandpanTune from '../classes/HandpanTune';
-	import Player from '../classes/Player';
 	import RangeSlider from 'svelte-range-slider-pips';
-	import { trackStore } from '../stores/trackStore';
-	import { tuneStore } from '../stores/tuneStore';
+
+	import Track from '$lib/classes/Track';
+	import Player from '$lib/classes/Player';
+
+	import { trackStore } from '$lib/stores/trackStore';
+	import { tuneStore } from '$lib/stores/tuneStore';
+
 	import ActionButton from '$lib/components/ActionButton.svelte';
+	import TrackNote from '$lib/components/TrackNote.svelte';
+	import TrackNoteAdd from '$lib/components/TrackNoteAdd.svelte';
+	import { get } from 'svelte/store';
 
-	let tune: HandpanTune;
-
-	let track: Track;
-
-	let bpmRangeValue: number[] = [120];
-	let beatRangeValue: number[] = [4];
+	let bpmRangeValue: number = get(trackStore).bpm;
+	let beatRangeValue: number = get(trackStore).beat;
 
 	let isPlaying = false;
 
-	trackStore.subscribe((value: Track) => {
-		track = value || track;
-		bpmRangeValue = [track.bpm];
-		beatRangeValue = [track.beat];
-		syncTrackAndTune();
-	});
-	tuneStore.subscribe((value: HandpanTune) => {
-		tune = value?.clone() || tune?.clone();
-		syncTrackAndTune();
-	});
-
-	function syncTrackAndTune() {
-		if (track && tune) {
-			track.syncWithTune(tune);
-		}
-	}
-
 	function play() {
 		isPlaying = true;
-		Player.playTrack(track, () => stop());
+		Player.playTrack($trackStore, () => stop());
 	}
 
 	function stop() {
@@ -46,8 +28,9 @@
 	}
 
 	$: {
-		track.bpm = bpmRangeValue[0];
-		track.beat = beatRangeValue[0];
+		$trackStore.bpm = bpmRangeValue;
+		$trackStore.beat = beatRangeValue;
+		$trackStore.syncWithTune($tuneStore);
 	}
 
 	const springValues = { stiffness: 0.15, damping: 0.8 };
@@ -59,7 +42,7 @@
 	<div>
 		Beat:
 		<RangeSlider
-			bind:values={beatRangeValue}
+			bind:value={beatRangeValue}
 			min={Track.MIN_BEAT}
 			max={Track.MAX_BEAT}
 			float
@@ -73,7 +56,7 @@
 	<div>
 		Speed (bpm):
 		<RangeSlider
-			bind:values={bpmRangeValue}
+			bind:value={bpmRangeValue}
 			min={Track.MIN_BPM}
 			max={Track.MAX_BPM}
 			step={5}
@@ -94,7 +77,7 @@
 
 	<div class="notes">
 		<TrackNoteAdd position={1} />
-		{#each track.notes as trackNote, position (trackNote.id)}
+		{#each $trackStore.notes as trackNote, position (trackNote.id)}
 			<TrackNote {trackNote} />
 			<TrackNoteAdd position={position + 1} />
 		{/each}

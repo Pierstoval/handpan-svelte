@@ -27,17 +27,35 @@ function getDefault(): Track {
 }
 
 function demoTrack(tune: HandpanTune): Track {
-	const track = new Track('Demo');
+	const track = new Track('New York intro');
+	track.bpm = 90;
 
-	track.addNote(tune.getDingByPosition(1), TrackNoteType.note);
-	track.addNote(tune.getTopNoteByPosition(2), TrackNoteType.note);
-	track.addNote(null, TrackNoteType.slap);
-	track.addNote(tune.getTopNoteByPosition(4), TrackNoteType.note);
+	track.addTuneNotesByPositions(tune, [2, 4, 6, 2, 4, 6, 2, 4], 3);
+	track.addTuneNotesByPositions(tune, [2, 4, 6, 2, 4, 6, 7, 8]);
+	track.addTuneNotesByPositions(tune, [3, 5, 7, 3, 5, 7, 3, 5,], 2);
+	track.addTuneNotesByPositions(tune, [1, 3, 5, 1, 3, 5, 1, 3,], 2);
 
-	track.addNote(tune.getDingByPosition(1), TrackNoteType.note);
-	track.addNote(tune.getTopNoteByPosition(3), TrackNoteType.note);
-	track.addNote(null, TrackNoteType.slap);
-	track.addNote(tune.getTopNoteByPosition(5), TrackNoteType.note);
+	track.addTuneNotesByPositions(tune, [2, 4, 6, 2, 4, 6, 2, 4]);
+	track.addTuneNotesByPositions(tune, [2, 4, 6, 2, 4, 6, 7, 8]);
+	track.addTuneNotesByPositions(tune, [2, 4, 6, 2, 4, 6, 2, 4], 2);
+	track.addTuneNotesByPositions(tune, [3, 5, 8, 3, 5, 8, 3, 5,], 2);
+	track.addTuneNotesByPositions(tune, [1, 3, 5, 1, 3, 5, 1, 3,]);
+	track.addTuneNotesByPositions(tune, [1, 3, 5, 1, 3, 8, 7, 6,]);
+
+	track.addTuneNotesByPositions(tune, [2, 4, 6, 2, 4, 6, 2, 4]);
+	track.addTuneNotesByPositions(tune, [2, 4, 6, 2, 4, 6, 7, 8]);
+	track.addTuneNotesByPositions(tune, [2, 4, 6, 2, 4, 6, 2, 4], 2);
+	track.addTuneNotesByPositions(tune, [2, 4, 6, 2, 4, 6, 2, 4]);
+
+	track.addTuneNoteByPosition(tune, 1); track.addEmptyNote();
+	track.addTuneNoteByPosition(tune, 2); track.addEmptyNote();
+	track.addTuneNoteByPosition(tune, 3); track.addEmptyNote();
+	track.addTuneNoteByPosition(tune, 4); track.addEmptyNote();
+	track.addTuneNoteByPosition(tune, 5); track.addEmptyNote();
+	track.addTuneNoteByPosition(tune, 6); track.addEmptyNote();
+	track.addTuneNoteByPosition(tune, 7); track.addEmptyNote();
+	track.addTuneNoteByPosition(tune, 8); track.addEmptyNote();
+	track.addTuneDingByPosition(tune, 1);
 
 	return track;
 }

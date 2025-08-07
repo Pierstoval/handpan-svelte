@@ -61,11 +61,66 @@ export default class Track {
 
 	public addNoteAt(position: number): void {
 		const note = TrackNote.createGhost(position);
+		console.info('add note at ', position);
+		console.info('note', note);
+
+		console.info('notes before', this._notes);
+
+		this._notes.forEach((existingNote: TrackNote) => {
+			if (existingNote.position >= position) {
+				console.info('existing note at position '+position)
+				existingNote.position++;
+			}
+		})
+
+		console.info('notes after', this._notes);
+
+		console.info('Splicing:');
 		this._notes.splice(position === 1 ? position - 1 : position, 0, note);
 	}
 
+	public addSlap() {
+		this.addNote(null, TrackNoteType.slap);
+	}
+
+	public addGhostNote() {
+		this.addNote(null, TrackNoteType.slap);
+	}
+
+	public addEmptyNote() {
+		this.addNote(null, TrackNoteType.none);
+	}
+
 	public addNote(note: HandpanNote | null, type: TrackNoteType): void {
-		this._notes.push(new TrackNote(note, type, this._notes.length));
+		const newNote = new TrackNote(note, type, this._notes.length);
+
+		this._notes.forEach((existingNote: TrackNote) => {
+			if (existingNote.position >= newNote.position) {
+				existingNote.position++;
+				existingNote.refresh();
+			}
+		})
+
+		this._notes.push(newNote);
+	}
+
+	public addTuneNoteByPosition(tune: HandpanTune, position: number): void {
+		const note = tune.getTopNoteByPosition(position);
+		if (!note) {
+			console.error(`Tried to find note at position ${position} of current Handpan tune, but did not found any. Skipping`);
+			return;
+		}
+		this.addNote(note, TrackNoteType.note);
+	}
+
+	public addTuneNotesByPositions(tune: HandpanTune, positions: number[], repeat = 1): void {
+		for (let i = 0; i < repeat; i++) {
+			positions.forEach((position) => this.addTuneNoteByPosition(tune, position));
+		}
+	}
+
+	public addTuneDingByPosition(tune: HandpanTune, position: number): void {
+		this.addNote(tune.getDingByPosition(position), TrackNoteType.note);
 	}
 
 	public removeNote(note: TrackNote): void {
@@ -82,6 +137,9 @@ export default class Track {
 		return track;
 	}
 
+	/**
+	 * Refreshes the notes in the Tune that are present in the Track and vice-versa.
+	 */
 	public syncWithTune(tune: HandpanTune): void {
 		this._notes.forEach((note: TrackNote) => {
 			if (!note.isNote) {

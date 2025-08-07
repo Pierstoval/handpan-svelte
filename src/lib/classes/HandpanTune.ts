@@ -129,6 +129,12 @@ export default class HandpanTune {
 				);
 		}
 
+		notes.forEach((existingNote: HandpanNote) => {
+			if (existingNote.position >= position) {
+				existingNote.position++;
+			}
+		})
+
 		notes.splice(position === 1 ? position - 1 : position, 0, note);
 	}
 

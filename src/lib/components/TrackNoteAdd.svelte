@@ -1,15 +1,11 @@
 <script lang="ts">
-	import Track from './Track.svelte';
 	import { trackStore } from '../stores/trackStore';
 
 	export let position: number;
-	let track: Track;
-
-	trackStore.subscribe((value: Track) => (track = value || track));
 
 	function addNote() {
-		track.addNoteAt(position);
-		trackStore.set(track);
+		$trackStore.addNoteAt(position);
+		//trackStore.set(track.clone());
 	}
 </script>
 

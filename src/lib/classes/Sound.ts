@@ -73,7 +73,6 @@ export default class Sound {
 		const insertedAt = Sound.sources.push(source) - 1;
 
 		source.onended = () => {
-			console.info('source ended:', source);
 			if (onEnded) {
 				onEnded();
 			}
@@ -101,9 +100,6 @@ export default class Sound {
 	stop() {
 		Sound.context
 			.close()
-			.then(() => {
-				console.info('Audio context suspended, stopping all sources.');
-			})
 			.catch((err) => {
 				console.error('Error suspending audio context:', err);
 			});

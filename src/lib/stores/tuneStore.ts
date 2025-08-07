@@ -27,7 +27,7 @@ function init() {
 }
 
 function getStorage(): Storage | null {
-	return typeof window !== 'undefined' ? window?.localStorage : null;
+	return (typeof window !== 'undefined' ? window?.localStorage : null) || null;
 }
 
 function save(tune: HandpanTune) {
@@ -71,10 +71,12 @@ function getFromStorage(): HandpanTune | null {
 export function defaultTune(): HandpanTune {
 	const tune = new HandpanTune([]);
 
-	tune.addNoteFromDetails(Note.C, NoteAlteration.sharp, 3, HandpanNoteType.bottomNote);
+	tune.addNoteFromDetails(Note.A, NoteAlteration.none, 3, HandpanNoteType.bottomNote);
+	tune.addNoteFromDetails(Note.B, NoteAlteration.none, 3, HandpanNoteType.bottomNote);
 
-	tune.addNoteFromDetails(Note.G, NoteAlteration.none, 3, HandpanNoteType.ding);
+	tune.addNoteFromDetails(Note.C, NoteAlteration.sharp, 3, HandpanNoteType.ding);
 
+	tune.addNoteFromDetails(Note.G, NoteAlteration.sharp, 3, HandpanNoteType.topNote);
 	tune.addNoteFromDetails(Note.A, NoteAlteration.none, 3, HandpanNoteType.topNote);
 	tune.addNoteFromDetails(Note.B, NoteAlteration.none, 3, HandpanNoteType.topNote);
 	tune.addNoteFromDetails(Note.C, NoteAlteration.sharp, 4, HandpanNoteType.topNote);

@@ -42,7 +42,9 @@
 
 		<div class="track-note-menu">
 			<div>
-				<ActionButton onclick={() => Player.playNote(trackNote)}>🔊</ActionButton>
+				{#if !trackNote.isNone}
+					<ActionButton onclick={() => Player.playNote(trackNote)}>🔊</ActionButton>
+				{/if}
 				<ActionButton onclick={() => removeNote(trackNote)}>🗑</ActionButton>
 			</div>
 

@@ -15,7 +15,7 @@
 </script>
 
 <div class="handpan-note-container">
-	<div class="handpan-note" on:click={addNote}>&plus;</div>
+	<button class="handpan-note" onclick={addNote}>&plus;</button>
 </div>
 
 <style lang="scss">
@@ -62,10 +62,6 @@
 				z-index: 2;
 				border-color: #fff;
 				cursor: pointer;
-				.handpan-note-menu {
-					visibility: visible;
-					display: block;
-				}
 			}
 		}
 	}
