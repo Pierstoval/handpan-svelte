@@ -1,5 +1,6 @@
 import type Track from './Track';
 import type TrackNote from './TrackNote';
+import Sound from '$lib/classes/Sound';
 
 const soundFiles = {
 	clac: 'clac/clac.flac',
@@ -51,29 +52,26 @@ const soundFiles = {
 };
 
 export default class Player {
-	public static readonly DEFAULT_AUDIO_DURATION = 300;
-
 	private static _isPlaying = false;
 
-	private static loadedAudio = {};
+	// Number corresponds to the duration of the audio file in seconds.
+	private static loadedAudio: Record<string, [Sound, number]> = {};
 
 	private static playingTimeouts: Array<ReturnType<typeof setTimeout>> = [];
 
 	private static playingNotes: Array<TrackNote> = [];
 
-	static get isPlaying(): boolean {
-		return this._isPlaying;
-	}
+	private static playingAudio: Array<Sound> = [];
 
 	public static loadAudioFiles(): void {
 		this.loadAudioFile('clac', soundFiles.clac);
 		this.loadAudioFile('gu', soundFiles.gu);
-		for (const note in soundFiles.notes) {
-			this.loadAudioFile(note, soundFiles.notes[note]);
-		}
+		Object.entries(soundFiles.notes).forEach(([note, file]) => {
+			this.loadAudioFile(note, file);
+		});
 	}
 
-	public static playTrack(track: Track, finishCallback: () => unknown): void {
+	public static playTrack(track: Track, finishCallback: null | (() => unknown)): void {
 		this.stop();
 
 		this._isPlaying = true;
@@ -85,7 +83,6 @@ export default class Player {
 		// Schedule each note to be executed at the proper time.
 		track.notes.forEach((note: TrackNote) => {
 			this.addPlayingTimeout(() => Player.playNote(note), currentTimeoutDuration);
-
 			currentTimeoutDuration += msPerBeat;
 		});
 
@@ -102,43 +99,23 @@ export default class Player {
 	}
 
 	public static stop(): void {
-		// Stop all timeouts and remove them from the player.
-		while (this.playingTimeouts.length) {
-			clearTimeout(this.playingTimeouts.shift());
-		}
-
-		// Play down all notes and remove them from the player.
-		while (this.playingNotes.length) {
-			this.playingNotes.shift().stopPlaying();
-		}
-
+		console.info('STOPPING');
+		this.playingTimeouts.forEach((timeout: number) => {
+			clearTimeout(timeout);
+		});
 		this.playingTimeouts = [];
+
+		this.playingNotes.forEach((note: TrackNote) => {
+			note.stopPlaying();
+		});
 		this.playingNotes = [];
 
+		this.playingAudio.forEach((audio: Sound) => {
+			audio.stop();
+		});
+		this.playingAudio = [];
+
 		this._isPlaying = false;
-	}
-
-	public static playNoteByType(
-		type: string,
-		volume = 1,
-		finishCallback: () => unknown = null
-	): void {
-		if (!this.loadedAudio[type]) {
-			console.error(`Sound type "${type}" s not loaded or does not exist.`);
-			return;
-		}
-
-		// Must be cloned to make sure it can be played several times in parallel.
-		// This allows playing the same audio twice in a row without having to wait
-		// for it to be stopped before restarting it.
-		const audio = this.loadedAudio[type].cloneNode();
-		audio.volume = volume;
-		audio.play();
-
-		if (finishCallback) {
-			const duration = isNaN(audio.duration) ? this.DEFAULT_AUDIO_DURATION : audio.duration;
-			this.addPlayingTimeout(finishCallback, duration);
-		}
 	}
 
 	public static playNote(note: TrackNote): void {
@@ -148,26 +125,38 @@ export default class Player {
 
 		switch (true) {
 			case note.isSlap:
-				this.playNoteByType('clac', 1, () => this.stopNote(note));
+				this.playNoteByType('clac', 1, () => note.stopPlaying());
 				break;
 
 			case note.isGhost:
-				this.playNoteByType('clac', 1, () => this.stopNote(note));
+				this.playNoteByType('clac', 1, () => note.stopPlaying());
 				break;
 
 			case note.isNone:
 				break;
 
 			default:
-				this.playNoteByType(note.displayName, 1, () => this.stopNote(note));
+				this.playNoteByType(note.baseName, 1, () => note.stopPlaying());
 				break;
 		}
 	}
 
-	private static stopNote(note: TrackNote): void {
-		note.stopPlaying();
+	public static playNoteByType(
+		type: string,
+		volume = 1,
+		finishCallback: null | (() => unknown) = null
+	): void {
+		if (!this.loadedAudio[type]) {
+			console.error(`Sound type "${type}" s not loaded or does not exist.`);
+			return;
+		}
 
-		this.playingNotes = this.playingNotes.filter((n: TrackNote) => n !== note);
+		const sound: Sound = this.loadedAudio[type][0];
+		sound.play(volume, 1, () => {
+			if (finishCallback) {
+				finishCallback();
+			}
+		});
 	}
 
 	private static getMsPerBeat(bpm: number, beat: number) {
@@ -179,10 +168,12 @@ export default class Player {
 	}
 
 	private static loadAudioFile(type: string, soundFile: string): void {
-		const audio = new Audio();
+		const audio = new Audio(soundFile);
 		audio.src = soundFile;
 		audio.preload = 'auto';
-		audio.volume = 1;
-		audio.addEventListener('canplaythrough', () => (this.loadedAudio[type] = audio));
+		audio.addEventListener('canplaythrough', () => {
+			const sound = new Sound(soundFile);
+			sound.load().then(() => (this.loadedAudio[type] = [sound, audio.duration]));
+		});
 	}
 }

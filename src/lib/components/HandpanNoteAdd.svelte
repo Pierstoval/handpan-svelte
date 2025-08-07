@@ -10,7 +10,7 @@
 
 	function addNote() {
 		tune.addNoteAt(position, type);
-		tuneStore.set(tune);
+		tuneStore.set(tune.clone());
 	}
 </script>
 

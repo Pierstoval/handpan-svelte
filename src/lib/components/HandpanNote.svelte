@@ -1,11 +1,15 @@
 <script lang="ts">
-	import { Note, NoteAlteration } from '../classes/_structs';
-	import HandpanNote from '../classes/HandpanNote';
-	import Player from '../classes/Player';
 	import { afterUpdate, onMount } from 'svelte';
 
+	import { Note, NoteAlteration } from '$lib/classes/_structs';
+	import HandpanNote from '$lib/classes/HandpanNote';
+	import Player from '$lib/classes/Player';
+
+	import { tuneStore } from '$lib/stores/tuneStore';
+	import ActionButton from '$lib/components/ActionButton.svelte';
+
 	export let note: HandpanNote;
-	export let onChange;
+	export let onChange: null | ((note: HandpanNote) => void) = null;
 
 	let show_menu = false;
 
@@ -14,10 +18,18 @@
 	const available_alterations: Array<NoteAlteration> = Object.values(NoteAlteration);
 
 	function onNoteValueChange(): void {
+		note.refresh();
 		if (onChange) {
 			onChange(note);
 		}
 		Player.playNoteByType(note.fullName);
+		tuneStore.set($tuneStore.clone());
+	}
+
+	function removeNote(note: HandpanNote): void {
+		const tune = $tuneStore;
+		tune.removeNote(note);
+		tuneStore.set(tune.clone());
 	}
 
 	onMount(() => note.refreshHtmlElement());
@@ -30,6 +42,11 @@
 			{note.fullName}
 		</div>
 		<div class="note-menu {show_menu ? 'active' : ''}">
+			<div>
+				<ActionButton onclick={() => Player.playNoteByType(note.fullName)}>🔊</ActionButton>
+				<ActionButton onclick={() => removeNote(note)}>🗑</ActionButton>
+			</div>
+
 			<div class="inputs_container">
 				<h3>Note</h3>
 				<div class="select_container">
@@ -72,16 +89,11 @@
 							<option value={note_octave}>
 								{note_octave}
 							</option>
+						{:else}
+							<option>What?</option>
 						{/each}
 					</select>
 				</div>
-			</div>
-
-			<div>
-				<h4>Info</h4>
-				<ul>
-					<li>Midi: {note.midiNumber}</li>
-				</ul>
 			</div>
 		</div>
 	</div>
@@ -143,10 +155,9 @@
 					display: inline-block;
 					vertical-align: top;
 					overflow: hidden;
-					border: solid grey 1px;
 
 					select {
-						margin: -2px -14px -15px -2px;
+						overflow-y: auto;
 
 						option {
 							min-width: 50px;

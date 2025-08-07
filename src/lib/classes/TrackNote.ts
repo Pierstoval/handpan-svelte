@@ -2,11 +2,38 @@ import { TrackNoteType } from './_structs';
 import type HandpanNote from './HandpanNote';
 
 export default class TrackNote {
-	public note: HandpanNote | null;
-	public type: TrackNoteType;
-	private _htmlElement: HTMLElement;
+	private _id: string;
+	public readonly type: TrackNoteType;
+	public readonly position: number;
+	private _note: HandpanNote | null;
+	private _htmlElement: HTMLElement | null = null;
+
+	get id() {
+		return this._id;
+	}
+
+	get note(): HandpanNote | null {
+		return this._note;
+	}
+
+	set note(note: HandpanNote | null) {
+		if (!note && this.type === TrackNoteType.note) {
+			console.error('Tried to set empty note to TrackNote of type "note". Note is mandatory here.');
+			return;
+		}
+
+		this._note = note;
+		this.refresh();
+	}
 
 	get htmlElement(): HTMLElement {
+		if (!this._htmlElement) {
+			throw new Error(
+				'Tried to access HTML element of track note, but it is not set.' +
+					'You might want to call refreshHtmlElement() first.'
+			);
+		}
+
 		return this._htmlElement;
 	}
 
@@ -15,10 +42,11 @@ export default class TrackNote {
 			console.error('Tried to set empty html element to track note.');
 			return;
 		}
+
 		this._htmlElement = value;
 	}
 
-	get fullName(): string {
+	get baseName(): string {
 		switch (true) {
 			case this.isSlap:
 				return '×';
@@ -27,7 +55,7 @@ export default class TrackNote {
 			case this.isNone:
 				return '—';
 			default:
-				return this.note?.fullName ?? '-';
+				return this._note?.fullName ?? '-';
 		}
 	}
 
@@ -38,7 +66,13 @@ export default class TrackNote {
 			);
 		}
 
-		return this.note.fullName;
+		if (!this._note) {
+			throw new Error(
+				`Tried to get display name of track note, but it has no handpan note associated to it. Type: ${this.type}.`
+			);
+		}
+
+		return this.position.toString() + '-' + this._note.fullName;
 	}
 
 	get isNote(): boolean {
@@ -57,64 +91,56 @@ export default class TrackNote {
 		return this.type === TrackNoteType.none;
 	}
 
-	constructor(note: HandpanNote | null, type: TrackNoteType) {
+	constructor(note: HandpanNote | null, type: TrackNoteType, position: number) {
 		if (!note && TrackNote.typeNeedsHandpanNote(type)) {
 			throw `Tried to create track note of type "${type}" with no HandpanNote, but this type needs one.`;
 		}
-		this.note = note;
+		this._note = note;
 		this.type = type;
+		this.position = position;
+		this._id = this.position + '-' + this.baseName;
+		this.refresh();
 		this.refreshHtmlElement();
 	}
 
-	public static createGhost(): TrackNote {
-		return new TrackNote(null, TrackNoteType.ghost);
+	public static createGhost(position: number): TrackNote {
+		return new TrackNote(null, TrackNoteType.ghost, position);
 	}
 
 	public setPlaying(): void {
-		if (!this._htmlElement) {
-			console.error(
-				`Cannot highlight note ${this.fullName} because it does not have an HTML Element associated to it.`
-			);
-			return;
-		}
+		this.htmlElement.firstElementChild?.classList.add('playing');
 
-		this._htmlElement.firstElementChild.classList.add('playing');
-
-		if (this.note) {
-			this.note.setPlaying();
+		if (this._note) {
+			this._note.setPlaying();
 		}
 	}
 
 	public stopPlaying(): void {
-		if (!this._htmlElement) {
-			console.error(
-				`Cannot disable highlight for note ${this.fullName} because it does not have an HTML Element associated to it.`
-			);
-			return;
-		}
+		this.htmlElement.firstElementChild?.classList.remove('playing');
 
-		this._htmlElement.firstElementChild.classList.remove('playing');
-
-		if (this.note) {
-			this.note.stopPlaying();
+		if (this._note) {
+			this._note.stopPlaying();
 		}
 	}
 
 	public syncWithTuneNote(note: HandpanNote): void {
 		this.refreshHtmlElement();
-
-		this.note = note;
+		this._note = note;
 		note.refreshHtmlElement();
 	}
 
 	public refreshHtmlElement(): void {
 		if (typeof document === 'undefined') return; // SSR
 
-		const noteElement = document.querySelector(`[data-track-note="${this.fullName}"]`);
+		const noteElement = document.querySelector(`[data-track-note="${this.id}"]`);
 
 		if (noteElement) {
 			this.htmlElement = <HTMLElement>noteElement;
 		}
+	}
+
+	public refresh() {
+		this._id = this.position + '-' + this.baseName;
 	}
 
 	private static typeNeedsHandpanNote(type: TrackNoteType): boolean {

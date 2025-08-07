@@ -1,41 +1,51 @@
 <script lang="ts">
-	import TrackNote from '../classes/TrackNote';
-	import HandpanTune from '../classes/HandpanTune';
-	import { TrackNoteType } from '../classes/_structs';
-	import Player from '../classes/Player';
 	import { afterUpdate, onMount } from 'svelte';
-	import { trackStore } from '../stores/trackStore';
-	import { tuneStore } from '../stores/tuneStore';
+
+	import TrackNote from '$lib/classes/TrackNote';
+	import { TrackNoteType } from '$lib/classes/_structs';
+	import Player from '$lib/classes/Player';
+
+	import { trackStore } from '$lib/stores/trackStore';
+	import { tuneStore } from '$lib/stores/tuneStore';
+	import ActionButton from '$lib/components/ActionButton.svelte';
 
 	export let trackNote: TrackNote;
-	let tune: HandpanTune;
 
 	const notes_types: Array<TrackNoteType> = Object.values(TrackNoteType);
 
 	trackStore.subscribe((value) => {
-		if (value) {
+		if (value && trackNote) {
 			trackNote.refreshHtmlElement();
 		}
 	});
-	tuneStore.subscribe((value) => {
-		tune = value;
-	});
 
 	function playNoteOnChange(): void {
+		trackNote.refresh();
 		Player.playNote(trackNote);
+	}
+
+	function removeNote(note: TrackNote): void {
+		const track = $trackStore;
+		track.removeNote(note);
+		trackStore.set(track.clone());
 	}
 
 	onMount(() => trackNote.refreshHtmlElement());
 	afterUpdate(() => trackNote.refreshHtmlElement());
 </script>
 
-<div class="track-note-container" data-track-note={trackNote.fullName}>
+<div class="track-note-container" data-track-note={trackNote.id}>
 	<div class="track-note type-{trackNote.type}">
 		<div class="note-name">
-			{trackNote.fullName}
+			{trackNote.baseName}
 		</div>
 
 		<div class="track-note-menu">
+			<div>
+				<ActionButton onclick={() => Player.playNote(trackNote)}>🔊</ActionButton>
+				<ActionButton onclick={() => removeNote(trackNote)}>🗑</ActionButton>
+			</div>
+
 			<div class="track_inputs_container">
 				<h3>Type</h3>
 				<div class="track_select_container">
@@ -49,16 +59,16 @@
 				</div>
 			</div>
 
-			{#if trackNote && tune && trackNote.isNote}
+			{#if trackNote && $tuneStore && trackNote.isNote}
 				<div class="track_inputs_container">
 					<h3>Note</h3>
 					<div class="track_select_container">
 						<select
 							bind:value={trackNote.note}
-							size={tune.numberOfNotes}
+							size={$tuneStore.numberOfNotes}
 							on:change={playNoteOnChange}
 						>
-							{#each tune.notes as tune_note (tune_note.fullName)}
+							{#each $tuneStore.notes as tune_note (tune_note.id)}
 								<option value={tune_note}>
 									{tune_note.fullDetailedName}
 								</option>
@@ -123,8 +133,7 @@
 			}
 
 			&.type-none {
-				background: transparent;
-				border-color: transparent;
+				color: transparent;
 				.note-name {
 					line-height: 44px;
 					font-size: 20px;
@@ -179,10 +188,9 @@
 					display: inline-block;
 					vertical-align: top;
 					overflow: hidden;
-					border: solid grey 1px;
 
 					select {
-						margin: -2px -14px -15px -2px;
+						overflow-y: auto;
 
 						option {
 							min-width: 50px;

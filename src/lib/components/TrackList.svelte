@@ -17,7 +17,8 @@
 	trackStore.subscribe((value: Track) => (currentTrack = value || currentTrack));
 
 	function onTrackValueChange(changeEvent: Event) {
-		changeCurrentTrack(parseInt(changeEvent.target?.value, 10));
+		const target = changeEvent.target as HTMLSelectElement;
+		changeCurrentTrack(parseInt(String(target.value ?? ''), 10));
 	}
 
 	function changeCurrentTrack(index: number) {
@@ -27,9 +28,14 @@
 
 		currentTrack = trackList[index];
 		storage.setItem('current_track', index.toString());
+		try {
+			trackStore.set(currentTrack);
+			currentTrack.syncWithTune(tune);
+		} catch (error) {
+			console.error('Error setting current track:', error);
 
-		trackStore.set(currentTrack);
-		currentTrack.syncWithTune(tune);
+			return;
+		}
 	}
 
 	onMount(() => {

@@ -2,9 +2,9 @@ import HandpanNote from './HandpanNote';
 import { HandpanNoteType, Note, NoteAlteration } from './_structs';
 
 export default class HandpanTune {
-	private readonly _topNotes: Array<HandpanNote> = [];
-	private readonly _dings: Array<HandpanNote> = [];
-	private readonly _bottomNotes: Array<HandpanNote> = [];
+	private _topNotes: Array<HandpanNote> = [];
+	private _dings: Array<HandpanNote> = [];
+	private _bottomNotes: Array<HandpanNote> = [];
 
 	constructor(notes: HandpanNote[]) {
 		notes.forEach((note: HandpanNote) => this.addNote(note));
@@ -20,10 +20,19 @@ export default class HandpanTune {
 			throw 'Handpan Tune incoming JSON does not contain all necessary fields.';
 		}
 
-		// TODO: finish deserializing
-		//debugger;
+		if (
+			!Array.isArray(deserializedJson._topNotes) ||
+			!Array.isArray(deserializedJson._dings) ||
+			!Array.isArray(deserializedJson._bottomNotes)
+		) {
+			throw 'Handpan Tune incoming JSON does not contain arrays for top notes, dings and/or bottom notes.';
+		}
 
-		return new HandpanTune([]);
+		return new HandpanTune([
+			...deserializedJson._topNotes,
+			...deserializedJson._dings,
+			...deserializedJson._bottomNotes
+		]);
 	}
 
 	get dings(): Array<HandpanNote> {
@@ -44,7 +53,11 @@ export default class HandpanTune {
 
 	// TODO: change implementation.
 	get notes(): Array<HandpanNote> {
-		return [];
+		return [...this._topNotes, ...this._dings, ...this._bottomNotes];
+	}
+
+	public clone(): HandpanTune {
+		return new HandpanTune([...this._topNotes, ...this._dings, ...this._bottomNotes]);
 	}
 
 	public addNote(note: HandpanNote): void {
@@ -60,10 +73,45 @@ export default class HandpanTune {
 		}
 	}
 
+	public addNoteFromDetails(
+		noteType: Note,
+		alteration: NoteAlteration,
+		octave: number,
+		type: HandpanNoteType
+	): void {
+		let position;
+		if (type === HandpanNoteType.topNote) {
+			position = this._topNotes.length ?? 0;
+		} else if (type === HandpanNoteType.ding) {
+			position = this._dings.length ?? 0;
+		} else if (type === HandpanNoteType.bottomNote) {
+			position = this._bottomNotes.length ?? 0;
+		} else {
+			throw new Error('Invalid note type provided for HandpanNote creation.');
+		}
+
+		const note = new HandpanNote(noteType, alteration, octave, type, position);
+
+		this.addNote(note);
+	}
+
+	public removeNote(note: HandpanNote): void {
+		if (note.isTop) {
+			this._topNotes = this._topNotes.filter((n: HandpanNote) => n.id !== note.id);
+			note.forcePosition(this._topNotes.length);
+		} else if (note.isDing) {
+			this._dings = this._dings.filter((n: HandpanNote) => n.id !== note.id);
+			note.forcePosition(this._dings.length);
+		} else if (note.isBottom) {
+			this._bottomNotes = this._bottomNotes.filter((n: HandpanNote) => n.id !== note.id);
+			note.forcePosition(this._topNotes.length);
+		}
+	}
+
 	public addNoteAt(position: number, type: HandpanNoteType): void {
 		const note = new HandpanNote(Note.A, NoteAlteration.none, 3, type, position);
 
-		let notes: Array<HandpanNote> = [];
+		let notes: Array<HandpanNote>;
 
 		switch (type) {
 			case HandpanNoteType.topNote:
@@ -130,9 +178,9 @@ export default class HandpanTune {
 	}
 
 	private refresh(): void {
-		const sortFunction = (n1: HandpanNote, n2: HandpanNote) => {
-			const p1 = n1.position,
-				p2 = n2.position;
+		const sortFunction = (a: HandpanNote, b: HandpanNote): number => {
+			const p1 = a.position,
+				p2 = b.position;
 			switch (true) {
 				case p1 < p2:
 					return -1;
@@ -141,6 +189,8 @@ export default class HandpanTune {
 				case p1 > p2:
 					return 1;
 			}
+
+			throw new Error('Uncovered case, maybe note position is NaN?');
 		};
 
 		this._topNotes.sort(sortFunction);

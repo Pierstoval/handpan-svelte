@@ -51,8 +51,8 @@ importers:
         specifier: ^4.3.1
         version: 4.3.1(picomatch@4.0.3)(svelte@5.38.0)(typescript@5.9.2)
       svelte-range-slider-pips:
-        specifier: ^2.3.1
-        version: 2.3.1
+        specifier: ^4.0.7
+        version: 4.0.7(svelte@5.38.0)
       typescript:
         specifier: ^5.9.2
         version: 5.9.2
@@ -1140,8 +1140,10 @@ packages:
       svelte:
         optional: true
 
-  svelte-range-slider-pips@2.3.1:
-    resolution: {integrity: sha512-P29PNqHld+SiaDuHzf98rLvhSYWXb3TVL9p7U5RG9UX8emUgypZgp9zuIIwpmIXysGQC6JG8duMc5FuaPnSVdg==}
+  svelte-range-slider-pips@4.0.7:
+    resolution: {integrity: sha512-d4MJsuoGDkzfiTU/bk5jjZgbKe/dtAB1gTewF28+3g2GzUpUgSpA0Lox6JB0GNQVnPB46bepiXK8sO26iHvTZA==}
+    peerDependencies:
+      svelte: ^4.2.7 || ^5.0.0
 
   svelte@5.38.0:
     resolution: {integrity: sha512-cWF1Oc2IM/QbktdK89u5lt9MdKxRtQnRKnf2tq6KOhYuhLOd2hbMuTiJ+vWMzAeMDe81AzbCgLd4GVtOJ4fDRg==}
@@ -2226,7 +2228,9 @@ snapshots:
     optionalDependencies:
       svelte: 5.38.0
 
-  svelte-range-slider-pips@2.3.1: {}
+  svelte-range-slider-pips@4.0.7(svelte@5.38.0):
+    dependencies:
+      svelte: 5.38.0
 
   svelte@5.38.0:
     dependencies:

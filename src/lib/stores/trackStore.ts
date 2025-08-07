@@ -1,7 +1,6 @@
 import { writable } from 'svelte/store';
-import Track from '../classes/Track';
-import TrackNote from '../classes/TrackNote';
-import type HandpanTune from '../classes/HandpanTune';
+import Track from '$lib/classes/Track';
+import type HandpanTune from '$lib/classes/HandpanTune';
 import {
 	AvailableOctaves,
 	HandpanNoteType,
@@ -9,10 +8,11 @@ import {
 	NoteAlteration,
 	TrackNoteType,
 	UnavailableNotes
-} from '../classes/_structs';
-import HandpanNote from '../classes/HandpanNote';
+} from '$lib/classes/_structs';
+import HandpanNote from '$lib/classes/HandpanNote';
+import { defaultTune } from '$lib/stores/tuneStore';
 
-const { subscribe, set } = writable<Track>(getDefault());
+const internalTrackStore = writable<Track>(getDefault());
 
 function list(tune: HandpanTune): Array<Track> {
 	if (!tune) {
@@ -23,21 +23,21 @@ function list(tune: HandpanTune): Array<Track> {
 }
 
 function getDefault(): Track {
-	return allNotesTrack();
+	return demoTrack(defaultTune());
 }
 
 function demoTrack(tune: HandpanTune): Track {
 	const track = new Track('Demo');
 
-	track.addNote(new TrackNote(tune.getDingByPosition(1), TrackNoteType.note));
-	track.addNote(new TrackNote(tune.getTopNoteByPosition(2), TrackNoteType.note));
-	track.addNote(new TrackNote(null, TrackNoteType.slap));
-	track.addNote(new TrackNote(tune.getTopNoteByPosition(4), TrackNoteType.note));
+	track.addNote(tune.getDingByPosition(1), TrackNoteType.note);
+	track.addNote(tune.getTopNoteByPosition(2), TrackNoteType.note);
+	track.addNote(null, TrackNoteType.slap);
+	track.addNote(tune.getTopNoteByPosition(4), TrackNoteType.note);
 
-	track.addNote(new TrackNote(tune.getDingByPosition(1), TrackNoteType.note));
-	track.addNote(new TrackNote(tune.getTopNoteByPosition(3), TrackNoteType.note));
-	track.addNote(new TrackNote(null, TrackNoteType.slap));
-	track.addNote(new TrackNote(tune.getTopNoteByPosition(5), TrackNoteType.note));
+	track.addNote(tune.getDingByPosition(1), TrackNoteType.note);
+	track.addNote(tune.getTopNoteByPosition(3), TrackNoteType.note);
+	track.addNote(null, TrackNoteType.slap);
+	track.addNote(tune.getTopNoteByPosition(5), TrackNoteType.note);
 
 	return track;
 }
@@ -45,7 +45,7 @@ function demoTrack(tune: HandpanTune): Track {
 function allNotesTrack(): Track {
 	let handpanNotePosition = 1;
 
-	const notesToAdd: { [key: string]: TrackNote } = {};
+	const notesToAdd: Array<[HandpanNote | null, TrackNoteType]> = [];
 
 	const track = new Track('All notes');
 
@@ -68,23 +68,19 @@ function allNotesTrack(): Track {
 					return;
 				}
 
-				const trackNote = new TrackNote(handpanNote, TrackNoteType.note);
-
-				notesToAdd[trackNote.fullName] = trackNote;
+				notesToAdd.push([handpanNote, TrackNoteType.note]);
 			});
 		});
 	});
 
-	for (const key in notesToAdd) {
-		const note = notesToAdd[key];
-		track.addNote(note);
-	}
+	notesToAdd.forEach(([note, type]) => {
+		track.addNote(note, type);
+	});
 
 	return track;
 }
 
 export const trackStore = {
-	list,
-	subscribe,
-	set
+	...internalTrackStore,
+	list
 };

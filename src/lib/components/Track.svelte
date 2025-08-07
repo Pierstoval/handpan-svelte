@@ -7,6 +7,7 @@
 	import RangeSlider from 'svelte-range-slider-pips';
 	import { trackStore } from '../stores/trackStore';
 	import { tuneStore } from '../stores/tuneStore';
+	import ActionButton from '$lib/components/ActionButton.svelte';
 
 	let tune: HandpanTune;
 
@@ -24,7 +25,7 @@
 		syncTrackAndTune();
 	});
 	tuneStore.subscribe((value: HandpanTune) => {
-		tune = value || tune;
+		tune = value?.clone() || tune?.clone();
 		syncTrackAndTune();
 	});
 
@@ -65,6 +66,7 @@
 			pips
 			all="label"
 			{springValues}
+			on:change={() => stop()}
 		/>
 	</div>
 
@@ -80,19 +82,20 @@
 			pipstep={2}
 			all="label"
 			{springValues}
+			on:change={() => stop()}
 		/>
 	</div>
 
 	{#if isPlaying}
-		<button type="button" class="track-control" on:click={stop}> ⏸ </button>
+		<ActionButton onclick={stop}>⏸</ActionButton>
 	{:else}
-		<button type="button" class="track-control" on:click={play}> ⏯ </button>
+		<ActionButton onclick={play}>⏯</ActionButton>
 	{/if}
 
 	<div class="notes">
 		<TrackNoteAdd position={1} />
-		{#each track.notes as trackNote, position (trackNote.fullName)}
-			<TrackNote bind:trackNote />
+		{#each track.notes as trackNote, position (trackNote.id)}
+			<TrackNote {trackNote} />
 			<TrackNoteAdd position={position + 1} />
 		{/each}
 	</div>
@@ -109,21 +112,5 @@
 		flex-wrap: wrap;
 		justify-content: left;
 		align-items: stretch;
-	}
-
-	.track-control {
-		width: 40px;
-		height: 40px;
-		margin: 5px auto;
-		font-size: 25px;
-		text-align: center;
-		border: solid 2px #666;
-		color: white;
-		line-height: 20px;
-		background: none transparent;
-		cursor: pointer;
-	}
-	.track-control:active {
-		transform: scale(0.95);
 	}
 </style>

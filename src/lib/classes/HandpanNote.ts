@@ -7,7 +7,8 @@ import {
 } from './_structs';
 
 export default class HandpanNote {
-	private _htmlElement: HTMLElement;
+	private _id: string;
+	private _htmlElement: HTMLElement | null = null;
 	private _note: Note;
 	private _alteration: NoteAlteration;
 	private _octave: number;
@@ -18,7 +19,18 @@ export default class HandpanNote {
 
 	private readonly _type: HandpanNoteType;
 
+	get id(): string {
+		return this._id;
+	}
+
 	get htmlElement(): HTMLElement {
+		if (!this._htmlElement) {
+			throw new Error(
+				'Tried to access HTML element of handpan note, but it is not set.' +
+					'You might want to call refreshHtmlElement() first.'
+			);
+		}
+
 		return this._htmlElement;
 	}
 
@@ -75,11 +87,12 @@ export default class HandpanNote {
 
 	get fullDetailedName(): string {
 		return (
+			(this.isDing ? ' Ding' : '') +
+			(this.isBottom ? ' Bottom' : '') +
+			(this.isDing || this.isBottom ? ' - ' : '') +
 			this._position +
 			' - ' +
-			this.fullName +
-			(this.isDing ? ' (ding)' : '') +
-			(this.isBottom ? ' (bottom)' : '')
+			this.fullName
 		);
 	}
 
@@ -96,7 +109,11 @@ export default class HandpanNote {
 	}
 
 	get midiNumber(): number {
-		let number = NoteMidiNumberBase[this._note.toString()] + (this._octave - 1) * 12;
+		const base: number = NoteMidiNumberBase[this._note] ?? 0;
+		if (!base) {
+			throw new Error(`Invalid note: ${this._note}. Cannot calculate MIDI number.`);
+		}
+		let number = base + (this._octave - 1) * 12;
 
 		if (this._alteration === NoteAlteration.sharp) {
 			number++;
@@ -119,9 +136,10 @@ export default class HandpanNote {
 		this._octave = octave;
 		this._type = type;
 		this._position = position;
-		if (position <= 0) {
+		if (position < 0) {
 			throw new Error('Note position must be a non-negative and non-zero integer.');
 		}
+		this._id = this.fullDetailedName;
 		this.refresh();
 		this.refreshHtmlElement();
 	}
@@ -141,7 +159,7 @@ export default class HandpanNote {
 		this._isPlaying = true;
 
 		this._htmlElement.classList.add('playing');
-		this._htmlElement.firstElementChild.classList.add('playing');
+		this._htmlElement.firstElementChild?.classList.add('playing');
 	}
 
 	public stopPlaying(): void {
@@ -152,7 +170,7 @@ export default class HandpanNote {
 		this._isPlaying = false;
 
 		this._htmlElement.classList.remove('playing');
-		this._htmlElement.firstElementChild.classList.remove('playing');
+		this._htmlElement.firstElementChild?.classList.remove('playing');
 	}
 
 	public refreshHtmlElement(): void {
@@ -161,20 +179,22 @@ export default class HandpanNote {
 		const noteElement = document.querySelector(`[data-handpan-note="${this.fullName}"]`);
 
 		if (noteElement) {
-			this.htmlElement = <HTMLElement>noteElement;
+			this.htmlElement = noteElement as HTMLElement;
 		}
 	}
 
 	/**
-	 * This method makes sure enharmonic notes are renamed.
-	 * For instance, "B#1" doesn't exist and should be converted to "C2".
+	 * This method makes sure enharmonic notes are renamed for simplicity reasons.
+	 * For instance, "B#1" will be converted to "C2".
 	 *
 	 * This will also make sure we have notes *without flat*,
 	 * only sharp will be displayed, to standardize how music/mp3/flac/wav/etc. files
 	 * will be stored in the project, even though a no-flat approach isn't complete standard…
 	 */
-	private refresh(): void {
-		const notesConversionTable = {
+	public refresh(): void {
+		this._id = this.fullDetailedName;
+
+		const notesConversionTable: { [key: string]: [Note, NoteAlteration, number] } = {
 			'B#': [Note.C, NoteAlteration.none, 1],
 			'E#': [Note.F, NoteAlteration.none, 0],
 			Ab: [Note.G, NoteAlteration.sharp, 0],
@@ -186,14 +206,17 @@ export default class HandpanNote {
 			Gb: [Note.F, NoteAlteration.sharp, 0]
 		};
 
-		const shortName = this._note + this._alteration;
-		const convertedNote = notesConversionTable[shortName];
+		const shortName: string = this._note + this._alteration;
+		const convertedNote: [Note, NoteAlteration, number] | undefined =
+			notesConversionTable[shortName];
 
 		if (!convertedNote) {
 			return;
 		}
 
 		let updateOctaveBy: number;
+
+		[this._note, this._alteration, updateOctaveBy] = convertedNote;
 
 		if (
 			updateOctaveBy &&
@@ -203,7 +226,6 @@ export default class HandpanNote {
 			return;
 		}
 
-		[this._note, this._alteration, updateOctaveBy] = convertedNote;
 		if (updateOctaveBy) {
 			this._octave += updateOctaveBy;
 		}
